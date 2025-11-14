@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="wildjam87"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://autoload/": "orange",
+"res://data/": "yellow",
+"res://entities/": "green",
+"res://fonts/": "teal",
+"res://localization/": "teal",
+"res://models/": "blue",
+"res://shaders/": "purple",
+"res://sounds/": "yellow",
+"res://ui/": "pink"
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
