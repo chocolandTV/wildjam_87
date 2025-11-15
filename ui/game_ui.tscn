@@ -1,14 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=8 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
+[ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="2_xh48a"]
+[ext_resource type="Script" uid="uid://cyeclsbos0jjr" path="res://ui/progression_bar.gd" id="3_3vkek"]
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
+[ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 
-[node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box")]
+[sub_resource type="Resource" id="Resource_2uxy6"]
+script = ExtResource("2_xh48a")
+canvas_name = "test"
+canvas_description = "we need more skills"
+canvas_mass = "undefined"
+canvas_gravity = "undefined"
+canvas_atmosphere = "undefined"
+canvas_habitablity = "over 60%"
+canvas_distance_sun = "over 100 .000 km"
+canvas_orbital_period = "undefined"
+canvas_temperature = "undefined"
+metadata/_custom_type_script = "uid://clnk0ny17n861"
+
+[node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box", "info_panel_interact", "input_manager", "progression_bar")]
 script = ExtResource("1_w46tp")
 interactive_box = NodePath("Interactive_Box")
+info_panel_interact = NodePath("Info_Panel_Interact")
+input_manager = NodePath("Input_Manager")
+progression_bar = NodePath("Progression_Bar")
+_test_canvas_info = SubResource("Resource_2uxy6")
 
 [node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value")]
+visible = false
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -158,7 +179,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "15°C"
 
-[node name="Progression_Bar" type="Control" parent="."]
+[node name="Progression_Bar" type="Control" parent="." node_paths=PackedStringArray("progression_bar", "timer")]
+visible = false
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -171,6 +193,9 @@ offset_right = 20.0
 offset_bottom = -70.53998
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("3_3vkek")
+progression_bar = NodePath("PanelContainer/MarginContainer/VBoxContainer/ProgressBar")
+timer = NodePath("Timer")
 
 [node name="PanelContainer" type="PanelContainer" parent="Progression_Bar"]
 layout_mode = 0
@@ -201,7 +226,11 @@ theme_override_colors/font_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
 theme_override_font_sizes/font_size = 7
 text = "Info: Scan Planets to get their habitablity."
 
-[node name="Info_Panel_Interact" type="Control" parent="."]
+[node name="Timer" type="Timer" parent="Progression_Bar"]
+one_shot = true
+
+[node name="Info_Panel_Interact" type="Control" parent="." node_paths=PackedStringArray("_scanning_label", "_mining_label")]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -215,6 +244,8 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_7hrjk")
+_scanning_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/scanning")
+_mining_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/mining")
 
 [node name="PanelContainer" type="PanelContainer" parent="Info_Panel_Interact"]
 layout_mode = 1
@@ -232,6 +263,10 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Info_Panel_Interact/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel_Interact/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -242,15 +277,20 @@ text = "Press Y"
 horizontal_alignment = 1
 
 [node name="scanning" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 7
 text = "for scanning"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Label3" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="mining" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 7
 text = "for mining"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Input_Manager" type="Node" parent="."]
+script = ExtResource("4_pylni")

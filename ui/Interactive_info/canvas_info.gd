@@ -1,7 +1,7 @@
 extends Resource
 class_name Canvas_Info
 # Canvas information properties
-
+@export var canvas_type_enum : CANVAS_TYPE = CANVAS_TYPE.SCANNING
 @export var canvas_name : String = "Default Canvas"
 @export var canvas_description : String = "This is a default canvas description."
 @export var canvas_mass : String = "Mass: 5.97 × 10^24 kg"
@@ -12,3 +12,8 @@ class_name Canvas_Info
 @export var canvas_orbital_period : String = "Orbital Period: 365 days"
 @export var canvas_temperature : String = "Surface Temperature: 15°C"
 
+enum CANVAS_TYPE {
+    SCANNING,
+    MINING
+
+}

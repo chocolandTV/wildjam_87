@@ -14,7 +14,7 @@ class_name Interactive_Box
 
 # Public method
 func setup_planet_info(_info : Canvas_Info) -> void:
-
+    print("Setting up planet info for: " + _info.canvas_name)
     #Handle scanning level
     planet_name_value.text = _info.canvas_name
     planet_description_value.text = _info.canvas_description
