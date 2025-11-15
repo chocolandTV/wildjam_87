@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player_Controller
 
 #Constants
-const SPEED_BASE : float = 30.0 # Base Movement speed of the player
+const SPEED_BASE : float = 300.0 # Base Movement speed of the player
 
 #Private Variables
 var _looks_right : bool = true # Track the direction the player is facing

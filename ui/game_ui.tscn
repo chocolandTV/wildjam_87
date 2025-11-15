@@ -1,0 +1,256 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctt33lrpmjpbr"]
+
+[ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
+[ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
+[ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
+
+[node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box")]
+script = ExtResource("1_w46tp")
+interactive_box = NodePath("Interactive_Box")
+
+[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value")]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -273.775
+offset_right = 67.99963
+offset_bottom = 28.224976
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_dcmab")
+planet_name_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/name_value")
+planet_description_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/desc_value")
+planet_mass_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/mass_value")
+planet_gravity_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/gravity_value")
+planet_atmosphere_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/atmos_value")
+planet_habitablity_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/habit_value")
+planet_distance_sun_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/sundis_value")
+planet_orbital_period_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/orbit_value")
+planet_temperature_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/temp_value")
+
+[node name="PanelContainer" type="PanelContainer" parent="Interactive_Box"]
+layout_mode = 0
+offset_left = -110.0
+offset_right = 217.0
+offset_bottom = 301.0
+pivot_offset = Vector2(-6.645, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="Interactive_Box/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Information"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Base_Info_headers" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="name" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Structure: "
+
+[node name="description" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Description:"
+
+[node name="mass" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Mass:"
+
+[node name="gravity" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Gravity:"
+
+[node name="atmos" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Atmosphere:"
+
+[node name="habili" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Habitability:"
+
+[node name="dis_sun" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Distance from Star:"
+
+[node name="orbit_time" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Orbital Period:"
+
+[node name="temperature" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Surface Temperature:"
+
+[node name="Planet_Values" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="name_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Humulli"
+uppercase = true
+
+[node name="desc_value" type="RichTextLabel" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "This Planet look really like our Hive Planet, it could be a great restart"
+fit_content = true
+
+[node name="mass_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "5.97 × 10^24 kg"
+
+[node name="gravity_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "9.8 m/s²"
+
+[node name="atmos_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Nitrogen-Oxygen"
+
+[node name="habit_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "98 % High"
+
+[node name="sundis_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "150 million km"
+
+[node name="orbit_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "365 days"
+
+[node name="temp_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "15°C"
+
+[node name="Progression_Bar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -110.53998
+offset_right = 20.0
+offset_bottom = -70.53998
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Progression_Bar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Progression_Bar/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Progression_Bar/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Scanning......"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
+theme_override_font_sizes/font_size = 7
+text = "Info: Scan Planets to get their habitablity."
+
+[node name="Info_Panel_Interact" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7hrjk")
+
+[node name="PanelContainer" type="PanelContainer" parent="Info_Panel_Interact"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Info_Panel_Interact/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel_Interact/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press Y"
+horizontal_alignment = 1
+
+[node name="scanning" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "for scanning"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label3" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "for mining"
+horizontal_alignment = 1
+uppercase = true

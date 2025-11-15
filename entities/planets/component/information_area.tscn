@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://svkti8t6tww7"]
+[gd_scene load_steps=2 format=3 uid="uid://svkti8t6tww7"]
+
+[ext_resource type="Script" uid="uid://qc0k5g2e5xse" path="res://entities/planets/component/information_area.gd" id="1_5uqr1"]
 
 [node name="Information_Area" type="Area2D"]
+script = ExtResource("1_5uqr1")

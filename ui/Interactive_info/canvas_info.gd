@@ -4,15 +4,11 @@ class_name Canvas_Info
 
 @export var canvas_name : String = "Default Canvas"
 @export var canvas_description : String = "This is a default canvas description."
-@export var canvas_text_01 : String = "Gravity: 9.8 m/s²"
-@export var canvas_text_02 : String = "Atmosphere: Nitrogen-Oxygen"
-@export var canvas_text_03 : String = "Habitability:  High"
-@export var canvas_text_04 : String = "Distance from Star: 150 million km"
-@export var canvas_text_05 : String = "Orbital Period: 365 days"
-@export var canvas_text_06 : String = "Surface Temperature: 15°C"
-
-@export var canvas_width : int = 800
-@export var canvas_height : int = 600
-@export var background_color : Color = Color(0, 0, 0)
-@export var canvas_background_texture : Texture2D
+@export var canvas_mass : String = "Mass: 5.97 × 10^24 kg"
+@export var canvas_gravity : String = "Gravity: 9.8 m/s²"
+@export var canvas_atmosphere : String = "Atmosphere: Nitrogen-Oxygen"
+@export var canvas_habitablity : String = "Habitability:  High"
+@export var canvas_distance_sun : String = "Distance from Star: 150 million km"
+@export var canvas_orbital_period : String = "Orbital Period: 365 days"
+@export var canvas_temperature : String = "Surface Temperature: 15°C"
 
