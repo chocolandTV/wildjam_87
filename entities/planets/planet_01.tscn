@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwkut0od10jp5"]
+
+[ext_resource type="Texture2D" uid="uid://xa768y8wipsk" path="res://models/planet_01.png" id="1_pbnkd"]
+[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="2_rh1pq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
+radius = 127.00394
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
+radius = 472.8689
+
+[node name="Planet_01" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pbnkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rh1pq")
+
+[node name="Information_Area" parent="." instance=ExtResource("2_rh1pq")]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
+shape = SubResource("CircleShape2D_xxvfu")
