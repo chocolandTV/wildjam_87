@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwkut0od10jp5"]
+[gd_scene load_steps=6 format=3 uid="uid://cwkut0od10jp5"]
 
 [ext_resource type="Texture2D" uid="uid://xa768y8wipsk" path="res://models/planet_01.png" id="1_pbnkd"]
+[ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_xxvfu"]
 [ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="2_rh1pq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
@@ -10,6 +11,7 @@ radius = 127.00394
 radius = 472.8689
 
 [node name="Planet_01" type="StaticBody2D"]
+script = ExtResource("1_xxvfu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pbnkd")
