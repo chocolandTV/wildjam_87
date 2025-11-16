@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=9 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cyeclsbos0jjr" path="res://ui/progression_bar.gd" id="3_3vkek"]
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
+[ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
 
 [sub_resource type="Resource" id="Resource_2uxy6"]
 script = ExtResource("2_xh48a")
@@ -294,3 +295,39 @@ uppercase = true
 
 [node name="Input_Manager" type="Node" parent="."]
 script = ExtResource("4_pylni")
+
+[node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_2uxy6")
+_lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime/Life_time_value")
+
+[node name="PanelContainer" type="PanelContainer" parent="Hud"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.804
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Main_H_Box" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Hud_Item_01_Lifetime" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime"]
+layout_mode = 2
+
+[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime"]
+layout_mode = 2
+text = "Life: 60 seconds"

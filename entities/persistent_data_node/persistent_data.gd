@@ -1,4 +1,6 @@
 extends Node
+#Constant
+const PLAYER_BASE_LIFETIME : float = 60.0
 
 @onready var _timer : Timer = $Timer
 
