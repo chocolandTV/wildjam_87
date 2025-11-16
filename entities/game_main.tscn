@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://crlnkahcesrh7"]
+[gd_scene load_steps=6 format=3 uid="uid://crlnkahcesrh7"]
 
 [ext_resource type="Script" uid="uid://bxit05hn5wjn4" path="res://entities/game_main.gd" id="1_6oaob"]
 [ext_resource type="PackedScene" uid="uid://dmo7rb7w3ehp1" path="res://entities/player/player.tscn" id="2_fv4eh"]
 [ext_resource type="PackedScene" uid="uid://cwkut0od10jp5" path="res://entities/planets/planet_01.tscn" id="3_sui74"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="3_tbisv"]
+[ext_resource type="PackedScene" uid="uid://cuw6h3i0n5nup" path="res://entities/Asteroids/asteroid_01.tscn" id="4_tbisv"]
 
 [node name="game_scene" type="Node2D"]
 modulate = Color(0.40069774, 0.40069774, 0.40069768, 1)
@@ -27,6 +28,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 texture = ExtResource("3_tbisv")
+
+[node name="Asteroid_01" parent="." instance=ExtResource("4_tbisv")]
+position = Vector2(731, -469)
 
 [node name="Planet_01" parent="." instance=ExtResource("3_sui74")]
 position = Vector2(904, 268)

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Canvas_Info" load_steps=2 format=3 uid="uid://la8r7p2rybfu"]
+
+[ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="1_kjiw5"]
+
+[resource]
+script = ExtResource("1_kjiw5")
+canvas_type_enum = 1
+canvas_name = "Common Asteroid"
+canvas_description = "This Asteroid have less mass and less resources"
+canvas_mass = "Mass: 1.97 × 10^3 kg"
+canvas_gravity = "-"
+canvas_atmosphere = "-"
+canvas_habitablity = "-"
+canvas_distance_sun = "-"
+canvas_orbital_period = "-"
+canvas_temperature = "Mineral"
+metadata/_custom_type_script = "uid://clnk0ny17n861"

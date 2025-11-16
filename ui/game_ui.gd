@@ -11,23 +11,34 @@ var _is_interacting :bool = false
 var _is_game_paused :bool = false
 var _is_game_menu_open : bool = false
 var _current_canvas_info : Canvas_Info
+var _current_target_area : Area2D = null
 
 func _ready() -> void:
 	input_manager.interact_pressed.connect(_start_progress_bar_interaction)
 	input_manager.pause_pressed.connect(_on_game_paused)
 	input_manager.menu_pressed.connect(_on_game_menu_toggled)
-	
+
 # Public Methods
-func setup_interactive_box(planet_info : Canvas_Info) -> void:
+func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> void:
+	#store current info and target area
 	_current_canvas_info = planet_info
-	interactive_box.setup_planet_info(_test_canvas_info) ### add setup_asteroid_info later
+	_current_target_area = _target_area
+
 	# Configure interaction panel based on canvas type
 	if planet_info.canvas_type_enum == planet_info.CANVAS_TYPE.SCANNING:
+
+		if _current_target_area._is_allready_scanned:
+			interactive_box.setup_planet_info(_current_canvas_info)
+		else:
+			interactive_box.setup_planet_info(_test_canvas_info)
+		
 		info_panel_interact.show()
 		info_panel_interact.setup_scanning_mode()
 		#turn is_interacting to true
 		_is_interacting = true
 	elif planet_info.canvas_type_enum == planet_info.CANVAS_TYPE.MINING:
+		print("Setting up mining mode")
+		interactive_box.setup_asteroid_info(_current_canvas_info)
 		info_panel_interact.show()
 		info_panel_interact.setup_mining_mode()
 		#turn is_interacting to true
@@ -45,6 +56,7 @@ func hide_interactive_box() -> void:
 
 func show_interactive_box() -> void:
 	interactive_box.visible = true
+
 # completed interaction progress
 func progress_completed() -> void:
 	_is_interacting = false
@@ -53,7 +65,10 @@ func progress_completed() -> void:
 	if _current_canvas_info.canvas_type_enum == _current_canvas_info.CANVAS_TYPE.SCANNING:
 		interactive_box.setup_planet_info(_current_canvas_info) ### add setup_asteroid_info later
 		# give scan upgrade to player
-		UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY, 1)
+		UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY)
+		#set Planet as scanned planets to persistent data
+		_current_target_area.is_allready_scanned = true
+		PersistentData.scanned_planets[_current_target_area.planet_name] = 1
 
 ################ PRIVATE METHODS ################
 

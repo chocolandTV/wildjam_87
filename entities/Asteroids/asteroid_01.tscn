@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuw6h3i0n5nup"]
+
+[ext_resource type="Script" uid="uid://cihr0qps5xr1s" path="res://entities/Asteroids/asteroid_base.gd" id="1_s646y"]
+[ext_resource type="Texture2D" uid="uid://bxmqtucdftbo0" path="res://models/asteroid_01.png" id="1_vpnsi"]
+[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="2_0awka"]
+[ext_resource type="Resource" uid="uid://la8r7p2rybfu" path="res://entities/Asteroids/asteroid_01_base_mineral.tres" id="2_dwjsg"]
+[ext_resource type="Script" uid="uid://0pryhkljbvq1" path="res://entities/Asteroids/information_area.gd" id="5_dwjsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
+radius = 106.7942
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gsjpe"]
+radius = 154.43445
+
+[node name="Asteroid_01" type="CharacterBody2D"]
+script = ExtResource("1_s646y")
+asteroid_info = ExtResource("2_dwjsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0awka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vpnsi")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("1_vpnsi")
+
+[node name="Mining_Component" type="Node" parent="."]
+
+[node name="Information_Area" parent="." instance=ExtResource("2_0awka")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_dwjsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
+shape = SubResource("CircleShape2D_gsjpe")

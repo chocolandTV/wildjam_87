@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://clnk0ny17n861"
 radius = 127.00394
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
-radius = 472.8689
+radius = 237.2172
 
 [node name="Planet_01" type="StaticBody2D"]
 script = ExtResource("1_xxvfu")

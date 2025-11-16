@@ -15,6 +15,7 @@ var cycle_stored_upgrades : Dictionary = {
 ############################################# FUNCTIONS #############################################
 func _ready() -> void:
     UpgradeManager.upgrade_performed.connect(_on_upgrade_performed)
+    current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) *2)
 
 func _physics_process(delta: float) -> void:
     if current_lifetime > 0:
@@ -41,17 +42,16 @@ func next_cycle() -> void:
         "upgrade_scan_efficiency" : 0,
         "upgrade_mining_efficiency" : 0
     }
-    UpgradeManager.perform_upgrade(PersistentData.SKILL_LIFETIME, 2)
+    UpgradeManager.perform_upgrade(PersistentData.SKILL_LIFETIME)
     #Reset lifetime for next cycle
-    current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1)
+    current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) *2)
 
-func upgrade_cycle_stored_data(upgrade_id : String, amount : int) -> void:
+func upgrade_cycle_stored_data(upgrade_id : String,) -> void:
     if cycle_stored_upgrades.has(upgrade_id):
-        cycle_stored_upgrades[upgrade_id] += amount
-        print("CycleManager: Upgraded %s by %d for current cycle." % [upgrade_id, amount])
+        cycle_stored_upgrades[upgrade_id] += 1
     else:
         print("CycleManager: Invalid upgrade ID %s" % upgrade_id)
 
 ############################################ PRIVATE METHODS ############################################
-func _on_upgrade_performed(upgrade_id : String, amount : int) -> void:
-    upgrade_cycle_stored_data(upgrade_id, amount)
+func _on_upgrade_performed(upgrade_id : String) -> void:
+    upgrade_cycle_stored_data(upgrade_id)
