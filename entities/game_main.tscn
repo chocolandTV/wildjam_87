@@ -13,8 +13,10 @@ script = ExtResource("1_6oaob")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 4096.0
-offset_bottom = 4096.0
+offset_left = -1233.0
+offset_top = -1337.0
+offset_right = 2863.0
+offset_bottom = 2759.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -28,3 +30,12 @@ texture = ExtResource("3_tbisv")
 
 [node name="Planet_01" parent="." instance=ExtResource("3_sui74")]
 position = Vector2(904, 268)
+
+[node name="Planet_02" parent="." instance=ExtResource("3_sui74")]
+position = Vector2(889, 1282)
+
+[node name="Planet_03" parent="." instance=ExtResource("3_sui74")]
+position = Vector2(1947, 1356)
+
+[node name="Planet_04" parent="." instance=ExtResource("3_sui74")]
+position = Vector2(1999, 283)

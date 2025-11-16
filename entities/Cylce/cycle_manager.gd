@@ -11,6 +11,11 @@ var cycle_stored_upgrades : Dictionary = {
     "upgrade_scan_efficiency" : 0,
     "upgrade_mining_efficiency" : 0
 }
+
+############################################# FUNCTIONS #############################################
+func _ready() -> void:
+    UpgradeManager.upgrade_performed.connect(_on_upgrade_performed)
+
 func _physics_process(delta: float) -> void:
     if current_lifetime > 0:
         current_lifetime -= delta
@@ -21,8 +26,12 @@ func _physics_process(delta: float) -> void:
 ############################################ PUBLIC METHODS ############################################
 func next_cycle() -> void:
     current_cycle += 1
+    # Update Current Evolution
+    PersistentData.player_progress["current_evolution"] = current_cycle
+
     print("CycleManager: Advancing to next cycle.Now on cycle %d" % current_cycle)
-    cycle_changed.emit(cycle_stored_upgrades)
+    var _temp_stored_upgrades : Dictionary = cycle_stored_upgrades.duplicate()
+    cycle_changed.emit(_temp_stored_upgrades)
     # give new upgrade to the player
     #increase lifetime upgrade by 1
     #Reset cycle stored upgrades
@@ -32,6 +41,7 @@ func next_cycle() -> void:
         "upgrade_scan_efficiency" : 0,
         "upgrade_mining_efficiency" : 0
     }
+    UpgradeManager.perform_upgrade(PersistentData.SKILL_LIFETIME, 2)
     #Reset lifetime for next cycle
     current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + PersistentData.player_progress.get("upgrade_lifetime", 1)
 
@@ -41,3 +51,7 @@ func upgrade_cycle_stored_data(upgrade_id : String, amount : int) -> void:
         print("CycleManager: Upgraded %s by %d for current cycle." % [upgrade_id, amount])
     else:
         print("CycleManager: Invalid upgrade ID %s" % upgrade_id)
+
+############################################ PRIVATE METHODS ############################################
+func _on_upgrade_performed(upgrade_id : String, amount : int) -> void:
+    upgrade_cycle_stored_data(upgrade_id, amount)
