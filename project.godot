@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+PersistentData="*res://entities/persistent_data_node/persistent_data.tscn"
 GameUi="*res://ui/game_ui.tscn"
 
 [file_customization]

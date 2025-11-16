@@ -71,9 +71,11 @@ func _on_game_menu_toggled() -> void:
 	if not _is_game_menu_open:
 		_is_game_menu_open = true
 		get_tree().paused = _is_game_menu_open
+		## show pause control later
 	else:
 		_is_game_menu_open = false
 		get_tree().paused = _is_game_menu_open
+		## hide pause control later
 
 # Pause Handler
 func _pause_game(value :bool) -> void:
