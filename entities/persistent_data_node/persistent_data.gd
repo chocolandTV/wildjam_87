@@ -1,6 +1,11 @@
 extends Node
 #Constant
 const PLAYER_BASE_LIFETIME : float = 60.0
+const SKILL_LIFETIME : String = "upgrade_lifetime"
+const SKILL_SPEED : String = "upgrade_speed"
+const SKILL_SCAN_EFFICIENCY : String = "upgrade_scan_efficiency"
+const SKILL_MINING_EFFICIENCY : String = "upgrade_mining_efficiency"
+const SKILL_DASH : String = "upgrade_dash"
 
 @onready var _timer : Timer = $Timer
 
@@ -34,6 +39,7 @@ var player_progress : Dictionary = {
     "player_archived_game_goal" : 0,
     "upgrade_lifetime" : 1,
     "upgrade_speed" : 1,
+    "upgrade_dash" : 1,
     "upgrade_scan_efficiency" : 1,
     "upgrade_mining_efficiency" : 1
 }

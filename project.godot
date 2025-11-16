@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PersistentData="*res://entities/persistent_data_node/persistent_data.tscn"
 GameUi="*res://ui/game_ui.tscn"
 CycleManager="*res://entities/Cylce/cycle_manager.tscn"
+UpgradeManager="*res://entities/upgrade/upgrade_manager.tscn"
 
 [file_customization]
 

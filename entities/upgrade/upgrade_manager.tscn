@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx2n64uc1aalk"]
+
+[ext_resource type="Script" uid="uid://dwyxqksk0qhoe" path="res://entities/upgrade/upgrade_manager.gd" id="1_rtbpa"]
+
+[node name="Upgrade_Manager" type="Node"]
+script = ExtResource("1_rtbpa")

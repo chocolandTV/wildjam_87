@@ -45,14 +45,16 @@ func hide_interactive_box() -> void:
 
 func show_interactive_box() -> void:
 	interactive_box.visible = true
-#### IMPORTANT : UPDATED INTERACTIVE BOX AFTER SCANNING
+# completed interaction progress
 func progress_completed() -> void:
 	_is_interacting = false
 	info_panel_interact.hide()
 	progression_bar.visible = false
 	if _current_canvas_info.canvas_type_enum == _current_canvas_info.CANVAS_TYPE.SCANNING:
 		interactive_box.setup_planet_info(_current_canvas_info) ### add setup_asteroid_info later
-	
+		# give scan upgrade to player
+		UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY, 1)
+
 ################ PRIVATE METHODS ################
 
 func _start_progress_bar_interaction() -> void:
