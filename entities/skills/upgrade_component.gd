@@ -12,6 +12,7 @@ func get_upgrade_level() -> void:
 func upgrade_skill_level() -> void:
     upgrade_level += 1
     PersistentData.player_progress[upgrade_skill.skill_persistent_id] = upgrade_level
+    CycleManager.upgrade_cycle_stored_data(upgrade_skill.skill_persistent_id, 1)
 # Initialize upgrade level on ready
 func _ready() -> void:
     get_upgrade_level()

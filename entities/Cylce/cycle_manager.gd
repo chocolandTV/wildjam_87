@@ -32,3 +32,10 @@ func next_cycle() -> void:
     }
     #Reset lifetime for next cycle
     current_lifetime =  60 + PersistentData.player_progress.get("upgrade_lifetime", 1)
+
+func upgrade_cycle_stored_data(upgrade_id : String, amount : int) -> void:
+    if cycle_stored_upgrades.has(upgrade_id):
+        cycle_stored_upgrades[upgrade_id] += amount
+        print("CycleManager: Upgraded %s by %d for current cycle." % [upgrade_id, amount])
+    else:
+        print("CycleManager: Invalid upgrade ID %s" % upgrade_id)
