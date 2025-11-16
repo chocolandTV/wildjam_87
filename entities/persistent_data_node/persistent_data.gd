@@ -1,6 +1,7 @@
 extends Node
 #Constant
 const PLAYER_BASE_LIFETIME : float = 60.0
+
 const SKILL_LIFETIME : String = "upgrade_lifetime"
 const SKILL_SPEED : String = "upgrade_speed"
 const SKILL_SCAN_EFFICIENCY : String = "upgrade_scan_efficiency"
@@ -35,7 +36,7 @@ var game_settings : Dictionary = {
 }
 var player_progress : Dictionary = {
     "current_evolution" : 1,
-    "experience_points" : 0,
+    "au_traveled" : 0, # total distance traveled in kilometers (astronomical units)
     "player_archived_game_goal" : 0,
     "upgrade_lifetime" : 1,
     "upgrade_speed" : 1,
@@ -43,8 +44,11 @@ var player_progress : Dictionary = {
     "upgrade_scan_efficiency" : 1,
     "upgrade_mining_efficiency" : 1
 }
-
+################################## Functions ##################################
 func _ready() -> void:
+    ### DEBUG 
+    reset_game_data()
+    ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
     _timer.start()
     #Load existing game data if available
@@ -121,7 +125,7 @@ func reset_game_data() -> void:
     }
     player_progress  = {
     "current_evolution" : 1,
-    "experience_points" : 0,
+    "au_traveled" : 0,
     "player_archived_game_goal" : 0,
     "upgrade_speed" : 1,
     "upgrade_scan_efficiency" : 1,

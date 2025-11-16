@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Player_Skill" load_steps=2 format=3 uid="uid://bdk5fqsc1ducy"]
+
+[ext_resource type="Script" uid="uid://06h4qiladijf" path="res://entities/skills/skill_base.gd" id="1_gnk8s"]
+
+[resource]
+script = ExtResource("1_gnk8s")
+skill_name = "Speed"
+skill_persistent_id = "upgrade_speed"
+metadata/_custom_type_script = "uid://06h4qiladijf"

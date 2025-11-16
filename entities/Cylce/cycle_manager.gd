@@ -43,7 +43,7 @@ func next_cycle() -> void:
     }
     UpgradeManager.perform_upgrade(PersistentData.SKILL_LIFETIME, 2)
     #Reset lifetime for next cycle
-    current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + PersistentData.player_progress.get("upgrade_lifetime", 1)
+    current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1)
 
 func upgrade_cycle_stored_data(upgrade_id : String, amount : int) -> void:
     if cycle_stored_upgrades.has(upgrade_id):

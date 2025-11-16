@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=10 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://3cabxb3ulqxx" path="res://entities/skills/upgrade_component.tscn" id="3_sglur"]
 [ext_resource type="Resource" uid="uid://dwahbjluh8j5i" path="res://data/skill_life_time.tres" id="4_bls4j"]
-[ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_scan_structure.tres" id="5_fkugw"]
+[ext_resource type="Resource" uid="uid://berlgt8vrnb7a" path="res://data/skill_scan_efficiency.tres" id="5_fkugw"]
+[ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_mining_efficiency.tres" id="6_26q78"]
+[ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
+[ext_resource type="Resource" uid="uid://c7apfgbi6ab8g" path="res://data/skill_upgrade_speed.tres" id="8_wvtmh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_abrql"]
 radius = 66.09841
@@ -20,8 +23,21 @@ texture = ExtResource("1_symyc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_abrql")
 
-[node name="Upgrade_Life_Component" parent="." instance=ExtResource("3_sglur")]
+[node name="Upgrade_Life" parent="." instance=ExtResource("3_sglur")]
 upgrade_skill = ExtResource("4_bls4j")
 
-[node name="Upgrade_Scan_Component" parent="." instance=ExtResource("3_sglur")]
+[node name="Upgrade_Scan" parent="." instance=ExtResource("3_sglur")]
 upgrade_skill = ExtResource("5_fkugw")
+
+[node name="Upgrade_Mining" parent="." instance=ExtResource("3_sglur")]
+upgrade_skill = ExtResource("6_26q78")
+
+[node name="Upgrade_Dash" parent="." instance=ExtResource("3_sglur")]
+upgrade_skill = ExtResource("7_bectd")
+
+[node name="Upgrade_Speed" parent="." instance=ExtResource("3_sglur")]
+upgrade_skill = ExtResource("8_wvtmh")
+
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
