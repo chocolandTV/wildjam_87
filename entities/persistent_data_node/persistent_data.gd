@@ -30,6 +30,7 @@ var player_progress : Dictionary = {
     "current_evolution" : 1,
     "experience_points" : 0,
     "player_archived_game_goal" : 0,
+    "upgrade_lifetime" : 1,
     "upgrade_speed" : 1,
     "upgrade_scan_efficiency" : 1,
     "upgrade_mining_efficiency" : 1

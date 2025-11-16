@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3cabxb3ulqxx"]
+
+[ext_resource type="Script" uid="uid://mrssbypbicum" path="res://entities/skills/upgrade_component.gd" id="1_ltgt5"]
+
+[node name="Upgrade_Component" type="Node"]
+script = ExtResource("1_ltgt5")

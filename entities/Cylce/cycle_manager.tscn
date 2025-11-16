@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bys7bl0djhyhi"]
+
+[ext_resource type="Script" uid="uid://iatkms6xdmxx" path="res://entities/Cylce/cycle_manager.gd" id="1_d5c0o"]
+
+[node name="Cycle_Manager" type="Node"]
+script = ExtResource("1_d5c0o")

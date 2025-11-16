@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Player_Skill" load_steps=2 format=3 uid="uid://dwahbjluh8j5i"]
+
+[ext_resource type="Script" uid="uid://06h4qiladijf" path="res://entities/skills/skill_base.gd" id="1_rqcrd"]
+
+[resource]
+script = ExtResource("1_rqcrd")
+skill_name = "Lifetime Evolution"
+skill_value_per_level = 60.0
+metadata/_custom_type_script = "uid://06h4qiladijf"
