@@ -5,9 +5,7 @@ signal pause_pressed
 signal menu_pressed
 
 func _input(event: InputEvent) -> void:
-    if event.is_action_pressed("interact"):
-        interact_pressed.emit()
-
+    
     if event.is_action_pressed("pause"):
         pause_pressed.emit()
         

@@ -29,9 +29,6 @@ color = Color(0, 0, 0, 1)
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 texture = ExtResource("3_tbisv")
 
-[node name="Asteroid_01" parent="." instance=ExtResource("4_tbisv")]
-position = Vector2(731, -469)
-
 [node name="Planet_01" parent="." instance=ExtResource("3_sui74")]
 position = Vector2(904, 268)
 
@@ -43,3 +40,6 @@ position = Vector2(1947, 1356)
 
 [node name="Planet_04" parent="." instance=ExtResource("3_sui74")]
 position = Vector2(1999, 283)
+
+[node name="Asteroid_01" parent="." instance=ExtResource("4_tbisv")]
+position = Vector2(882, -404)

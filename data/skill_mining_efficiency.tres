@@ -6,5 +6,5 @@
 script = ExtResource("1_pxksf")
 skill_name = "Scan Efficiency"
 skill_value_per_level = 0.1
-skill_persistent_id = "upgrade_scan_efficiency"
+skill_persistent_id = "upgrade_mining_efficiency"
 metadata/_custom_type_script = "uid://06h4qiladijf"

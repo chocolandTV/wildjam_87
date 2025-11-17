@@ -15,6 +15,7 @@ var cycle_stored_upgrades : Dictionary = {
 ############################################# FUNCTIONS #############################################
 func _ready() -> void:
     UpgradeManager.upgrade_performed.connect(_on_upgrade_performed)
+    
     current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) *2)
 
 func _physics_process(delta: float) -> void:

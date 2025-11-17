@@ -18,6 +18,9 @@ func _ready() -> void:
 	input_manager.pause_pressed.connect(_on_game_paused)
 	input_manager.menu_pressed.connect(_on_game_menu_toggled)
 
+func setup_asteroid_mining_box(_value : bool) ->void:
+	info_panel_interact.visible = _value
+
 # Public Methods
 func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> void:
 	#store current info and target area
@@ -31,9 +34,7 @@ func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> 
 			interactive_box.setup_planet_info(_current_canvas_info)
 		else:
 			interactive_box.setup_planet_info(_test_canvas_info)
-		
-		info_panel_interact.show()
-		info_panel_interact.setup_scanning_mode()
+
 		#turn is_interacting to true
 		_is_interacting = true
 

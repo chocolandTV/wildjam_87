@@ -14,18 +14,11 @@ class_name Interactive_Box
 
 ### Planet and Asteroid Panels
 @export var planet_panel : PanelContainer
-@export var asteroid_panel : PanelContainer
-
-# Asteroid values
-@export var asteroid_class_value : Label
-@export var asteroid_description_value : RichTextLabel
-@export var asteroid_mass_value : Label
-@export var asteroid_resources_value : RichTextLabel
 
 # Public method
 func setup_planet_info(_info : Canvas_Info) -> void:
 	planet_panel.show()
-	asteroid_panel.hide()   
+
 	print("Setting up planet info for: " + _info.canvas_name)
 	#Handle scanning level
 	planet_name_value.text = _info.canvas_name
@@ -38,13 +31,3 @@ func setup_planet_info(_info : Canvas_Info) -> void:
 	planet_orbital_period_value.text = _info.canvas_orbital_period
 	planet_temperature_value.text = _info.canvas_temperature
 
-func setup_asteroid_info(_info : Canvas_Info) -> void:
-	planet_panel.hide()
-	asteroid_panel.show()   
-	print("Setting up asteroid info for: " + _info.canvas_name)
-	asteroid_class_value.text = _info.canvas_name
-	asteroid_description_value.text = _info.canvas_gravity
-	asteroid_mass_value.text = _info.canvas_mass
-	asteroid_resources_value.text = _info.canvas_description
-
-	

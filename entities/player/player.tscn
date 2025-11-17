@@ -44,4 +44,4 @@ wait_time = 4.0
 one_shot = true
 
 [node name="Mining_Arm" parent="." instance=ExtResource("9_bectd")]
-position = Vector2(46, 83)
+position = Vector2(51, 155)

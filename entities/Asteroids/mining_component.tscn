@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cab1qufvhngpw"]
+
+[ext_resource type="Script" uid="uid://demp2thhckreb" path="res://entities/Asteroids/mining_component.gd" id="1_ldw1d"]
+
+[node name="Mining_Component" type="Node"]
+script = ExtResource("1_ldw1d")
+total_resources = {
+"Artifact": 0,
+"Crystals": 0,
+"Gas": 0,
+"Minerals": 25
+}

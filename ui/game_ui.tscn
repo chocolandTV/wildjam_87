@@ -29,7 +29,7 @@ input_manager = NodePath("Input_Manager")
 progression_bar = NodePath("Progression_Bar")
 _test_canvas_info = SubResource("Resource_2uxy6")
 
-[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel", "asteroid_panel", "asteroid_class_value", "asteroid_description_value", "asteroid_mass_value", "asteroid_resources_value")]
+[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel")]
 visible = false
 layout_mode = 3
 anchors_preset = 3
@@ -54,11 +54,6 @@ planet_distance_sun_value = NodePath("PanelContainer/MarginContainer/VBoxContain
 planet_orbital_period_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/orbit_value")
 planet_temperature_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/temp_value")
 planet_panel = NodePath("PanelContainer")
-asteroid_panel = NodePath("Asteroid_Container")
-asteroid_class_value = NodePath("Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/name_value")
-asteroid_description_value = NodePath("Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/desc_value")
-asteroid_mass_value = NodePath("Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/mass_value")
-asteroid_resources_value = NodePath("Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/resource_value")
 
 [node name="PanelContainer" type="PanelContainer" parent="Interactive_Box"]
 visible = false
@@ -187,87 +182,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "15°C"
 
-[node name="Asteroid_Container" type="PanelContainer" parent="Interactive_Box"]
-visible = false
-layout_mode = 0
-offset_left = -110.0
-offset_right = 217.0
-offset_bottom = 301.0
-pivot_offset = Vector2(-6.645, 0)
-
-[node name="MarginContainer" type="MarginContainer" parent="Interactive_Box/Asteroid_Container"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Interactive_Box/Asteroid_Container/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Mining Information"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Base_Info_headers" type="VBoxContainer" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="name" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Asteroid Class : "
-
-[node name="description" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
-custom_minimum_size = Vector2(0, 48.775)
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Description:"
-
-[node name="mass" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Mass:"
-
-[node name="resource" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Resources:"
-
-[node name="Planet_Values" type="VBoxContainer" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="name_value" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "C- Type"
-
-[node name="desc_value" type="RichTextLabel" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 8
-text = "Chondrite - Most Common
-Consist of clay and silicate rocks"
-fit_content = true
-
-[node name="mass_value" type="Label" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "5.97 × 10^24 kg"
-
-[node name="resource_value" type="RichTextLabel" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 13
-text = "Mineral
-Gas
-Crystal
-Artifact"
-fit_content = true
-
 [node name="Progression_Bar" type="Control" parent="." node_paths=PackedStringArray("progression_bar", "timer")]
 visible = false
 layout_mode = 3
@@ -318,7 +232,7 @@ text = "Info: Scan Planets to get their habitablity."
 [node name="Timer" type="Timer" parent="Progression_Bar"]
 one_shot = true
 
-[node name="Info_Panel_Interact" type="Control" parent="." node_paths=PackedStringArray("_scanning_label", "_mining_label", "_scanning_header", "_mining_header")]
+[node name="Info_Panel_Interact" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -327,16 +241,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = 159.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_7hrjk")
-_scanning_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/scanning")
-_mining_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/mining")
-_scanning_header = NodePath("PanelContainer/MarginContainer/VBoxContainer/scanning_header")
-_mining_header = NodePath("PanelContainer/MarginContainer/VBoxContainer/mining_header")
 
 [node name="PanelContainer" type="PanelContainer" parent="Info_Panel_Interact"]
 layout_mode = 1
@@ -362,26 +272,12 @@ theme_override_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel_Interact/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="scanning_header" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "PRESS E"
-horizontal_alignment = 1
-
 [node name="mining_header" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "HOLD E"
 horizontal_alignment = 1
 
-[node name="scanning" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 7
-text = "for scanning"
-horizontal_alignment = 1
-uppercase = true
-
 [node name="mining" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 7
 text = "for mining"
