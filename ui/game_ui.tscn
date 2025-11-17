@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=10 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 [ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
+[ext_resource type="Texture2D" uid="uid://4wpx883tymr1" path="res://models/icon_test.png" id="8_hgyfx"]
 
 [sub_resource type="Resource" id="Resource_2uxy6"]
 script = ExtResource("2_xh48a")
@@ -293,7 +294,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_2uxy6")
-_lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime/Life_time_value")
+_lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2/Life_time_value")
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud"]
 layout_mode = 1
@@ -313,12 +314,34 @@ theme_override_constants/margin_bottom = 5
 [node name="Main_H_Box" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Hud_Item_01_Lifetime" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime"]
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+layout_mode = 2
+texture = ExtResource("8_hgyfx")
+
+[node name="Evolution_Cylce" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+layout_mode = 2
+text = "Evolution"
+
+[node name="Evolution_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "3333333333"
+
+[node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime"]
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
 layout_mode = 2
-text = "Life: 60 seconds"
+texture = ExtResource("8_hgyfx")
+
+[node name="Life_time_header" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
+layout_mode = 2
+text = "My Lifecircle: "
+
+[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "5555555555555"

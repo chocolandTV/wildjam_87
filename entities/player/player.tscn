@@ -19,6 +19,10 @@ motion_mode = 1
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_symyc")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -44,4 +48,13 @@ wait_time = 4.0
 one_shot = true
 
 [node name="Mining_Arm" parent="." instance=ExtResource("9_bectd")]
-position = Vector2(51, 155)
+z_index = 1
+position = Vector2(52, 146)
+
+[node name="Mining_Arm2" parent="." instance=ExtResource("9_bectd")]
+z_index = 1
+position = Vector2(14, 160)
+
+[node name="Mining_Arm3" parent="." instance=ExtResource("9_bectd")]
+z_index = 1
+position = Vector2(-29, 153)
