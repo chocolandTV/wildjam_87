@@ -246,7 +246,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "C- Type"
-uppercase = true
 
 [node name="desc_value" type="RichTextLabel" parent="Interactive_Box/Asteroid_Container/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2

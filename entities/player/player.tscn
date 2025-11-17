@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=11 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_mining_efficiency.tres" id="6_26q78"]
 [ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
 [ext_resource type="Resource" uid="uid://c7apfgbi6ab8g" path="res://data/skill_upgrade_speed.tres" id="8_wvtmh"]
+[ext_resource type="PackedScene" uid="uid://dgdcwqnuqa5cs" path="res://entities/player/mining_arm.tscn" id="9_bectd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_abrql"]
 radius = 66.09841
@@ -41,3 +42,6 @@ upgrade_skill = ExtResource("8_wvtmh")
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
+
+[node name="Mining_Arm" parent="." instance=ExtResource("9_bectd")]
+position = Vector2(46, 83)

@@ -10,6 +10,8 @@ var _looks_right : bool = true # Track the direction the player is facing
 var _input_vector : Vector2 = Vector2.ZERO # Store the player's input vector
 var _can_move : bool = true # Track if the player can move
 var _can_dash : bool = true # Track if the player can _dash
+var _killometers_traveled : float = 0.0 # Track distance traveled by the player
+var _start_position : Vector2 = Vector2.ZERO # Starting position for distance calculation
 # on ready varaibles
 @onready var _dash_timer : Timer = $Dash_Timer
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 	## timer timeout reset can_dash and can_move
 	_dash_timer.timeout.connect(_on_dash_timer_timeout)
 	CycleManager.cycle_changed.connect(_on_cycle_changed)
+	_start_position = global_position
 
 ## Input Method
 func _input(event: InputEvent) -> void:
@@ -29,10 +32,14 @@ func _input(event: InputEvent) -> void:
 		_dash()
 
 func _physics_process(_delta: float) -> void:
+	_start_position = global_position
 	if _can_move:
 		_process_input()
 		_move_player(_delta)
 	move_and_slide()
+	# Update distance traveled
+	_killometers_traveled += global_position.distance_to(_start_position)
+
 ################################# PRIVATE METHODS #################################
 func _process_input() -> void:
 	# Get the input vector from player controls
@@ -58,7 +65,7 @@ func _dash() -> void:
 	# _dash sound
 	if _can_dash:
 		_can_dash = false
-		_can_move = false
+
 		var dash_speed : float = DASH_COOLDOWN + ((PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)*5))
 		var _temp_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = _temp_input.normalized() * dash_speed
@@ -67,7 +74,7 @@ func _dash() -> void:
 func _on_dash_timer_timeout() -> void:
 	#animation and sound
 	_can_dash = true
-	_can_move = true
+
 
 func _on_cycle_changed(_cycle_stored_upgrades : Dictionary) -> void:
 	# Update dash cooldown based on upgrades

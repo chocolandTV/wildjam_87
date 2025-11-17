@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuw6h3i0n5nup"]
+[gd_scene load_steps=9 format=3 uid="uid://cuw6h3i0n5nup"]
 
 [ext_resource type="Script" uid="uid://cihr0qps5xr1s" path="res://entities/Asteroids/asteroid_base.gd" id="1_s646y"]
 [ext_resource type="Texture2D" uid="uid://bxmqtucdftbo0" path="res://models/asteroid_01.png" id="1_vpnsi"]
-[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="2_0awka"]
 [ext_resource type="Resource" uid="uid://la8r7p2rybfu" path="res://entities/Asteroids/asteroid_01_base_mineral.tres" id="2_dwjsg"]
-[ext_resource type="Script" uid="uid://0pryhkljbvq1" path="res://entities/Asteroids/information_area.gd" id="5_dwjsg"]
+[ext_resource type="Shader" uid="uid://cjmaa17pm3gpy" path="res://shaders/asteroid.gdshader" id="3_dwjsg"]
+[ext_resource type="Script" uid="uid://br1v2drbsddqy" path="res://entities/Asteroids/asteroid_area.gd" id="4_s646y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
 radius = 106.7942
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gsjpe"]
-radius = 154.43445
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ujlo"]
+shader = ExtResource("3_dwjsg")
+shader_parameter/shrink_factor = 0.0
+shader_parameter/original_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwjsg"]
+radius = 137.48091
 
 [node name="Asteroid_01" type="CharacterBody2D"]
 script = ExtResource("1_s646y")
@@ -20,6 +25,7 @@ asteroid_info = ExtResource("2_dwjsg")
 shape = SubResource("CircleShape2D_0awka")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4ujlo")
 texture = ExtResource("1_vpnsi")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -27,10 +33,10 @@ texture = ExtResource("1_vpnsi")
 
 [node name="Mining_Component" type="Node" parent="."]
 
-[node name="Information_Area" parent="." instance=ExtResource("2_0awka")]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("5_dwjsg")
+[node name="Mining_Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_s646y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
-shape = SubResource("CircleShape2D_gsjpe")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mining_Area2D"]
+shape = SubResource("CircleShape2D_dwjsg")
