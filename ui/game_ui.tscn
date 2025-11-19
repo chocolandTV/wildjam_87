@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=17 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
@@ -7,7 +7,13 @@
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 [ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
+[ext_resource type="Texture2D" uid="uid://drhgtrwxhdqlk" path="res://models/icon_evolution.png" id="8_85ca7"]
 [ext_resource type="Texture2D" uid="uid://4wpx883tymr1" path="res://models/icon_test.png" id="8_hgyfx"]
+[ext_resource type="Texture2D" uid="uid://3kdxph7e6lq" path="res://models/icon_minerals.png" id="9_vtgmo"]
+[ext_resource type="Texture2D" uid="uid://bxf87tbaap6mb" path="res://models/cursor.png" id="10_f7kcv"]
+[ext_resource type="Texture2D" uid="uid://bnabfryg3ovpl" path="res://models/icon_gas.png" id="10_gm2vc"]
+[ext_resource type="Texture2D" uid="uid://b5rg2x0d0hful" path="res://models/icon_crystal.png" id="11_85ca7"]
+[ext_resource type="Texture2D" uid="uid://hsqhwffk57sj" path="res://models/icon_artefact.png" id="12_iqfqv"]
 
 [sub_resource type="Resource" id="Resource_2uxy6"]
 script = ExtResource("2_xh48a")
@@ -21,6 +27,8 @@ canvas_distance_sun = "over 100 .000 km"
 canvas_orbital_period = "undefined"
 canvas_temperature = "undefined"
 metadata/_custom_type_script = "uid://clnk0ny17n861"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7kcv"]
 
 [node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box", "info_panel_interact", "input_manager", "progression_bar")]
 script = ExtResource("1_w46tp")
@@ -290,19 +298,16 @@ script = ExtResource("4_pylni")
 
 [node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
 script = ExtResource("7_2uxy6")
-_lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2/Life_time_value")
+_lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2/Life_time_value")
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 28.804
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 1139.0
+offset_bottom = 52.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Hud/PanelContainer"]
 layout_mode = 2
@@ -314,34 +319,162 @@ theme_override_constants/margin_bottom = 5
 [node name="Main_H_Box" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Evolution" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+custom_minimum_size = Vector2(200, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution"]
 layout_mode = 2
-texture = ExtResource("8_hgyfx")
 
-[node name="Evolution_Cylce" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_Cylce" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
 layout_mode = 2
 text = "Evolution"
 
-[node name="Evolution_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Evolution"]
+[node name="Evolution_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "3333333333"
 
-[node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Lifetime" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+custom_minimum_size = Vector2(230, 42)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
+[node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_hgyfx")
+expand_mode = 1
 
-[node name="Life_time_header" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
+[node name="Life_time_header" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
 layout_mode = 2
-text = "My Lifecircle: "
+text = "Age: "
 
-[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Item_01_Lifetime2"]
+[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
-text = "5555555555555"
+text = "55555"
+
+[node name="VSeparator" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+layout_mode = 2
+theme_override_constants/separation = 69
+theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
+
+[node name="Resource_Holder" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+custom_minimum_size = Vector2(320, 42)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder"]
+layout_mode = 2
+
+[node name="Resource_Minerals" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer"]
+layout_mode = 2
+
+[node name="minerals_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("9_vtgmo")
+expand_mode = 1
+
+[node name="minerals_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+text = "x 52"
+
+[node name="VSeparator" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+
+[node name="gas_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("10_gm2vc")
+expand_mode = 1
+
+[node name="gas_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+text = "x 52"
+
+[node name="VSeparator2" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+
+[node name="crystal_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("11_85ca7")
+expand_mode = 1
+
+[node name="crystals_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+text = "x 52"
+
+[node name="VSeparator3" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+
+[node name="artefacts_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("12_iqfqv")
+expand_mode = 1
+
+[node name="artifacts_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+layout_mode = 2
+text = "x 52"
+
+[node name="VSeparator2" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+layout_mode = 2
+theme_override_constants/separation = 44
+theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
+
+[node name="Hud_Panel_Mining_arms" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+custom_minimum_size = Vector2(60, 42)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("10_f7kcv")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "x 3"
+
+[node name="Hud_Panel_Time_Played" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+custom_minimum_size = Vector2(169, 42)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("10_f7kcv")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(133, 32)
+layout_mode = 2
+text = "Speed:  99999 AU"
