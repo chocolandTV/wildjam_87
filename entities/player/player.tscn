@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=13 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
+[ext_resource type="Script" uid="uid://bo2sy4xwreqtp" path="res://entities/player/background.gd" id="3_7thud"]
 [ext_resource type="PackedScene" uid="uid://3cabxb3ulqxx" path="res://entities/skills/upgrade_component.tscn" id="3_sglur"]
 [ext_resource type="Resource" uid="uid://dwahbjluh8j5i" path="res://data/skill_life_time.tres" id="4_bls4j"]
 [ext_resource type="Resource" uid="uid://berlgt8vrnb7a" path="res://data/skill_scan_efficiency.tres" id="5_fkugw"]
@@ -24,6 +25,7 @@ z_index = -1000
 texture_filter = 1
 texture_repeat = 2
 texture = ExtResource("10_wvtmh")
+script = ExtResource("3_7thud")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
