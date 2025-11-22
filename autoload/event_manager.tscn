@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csgcbc4pysiqr"]
+
+[ext_resource type="Script" uid="uid://cpor2eg7t28qy" path="res://autoload/event_manager.gd" id="1_uowws"]
+
+[node name="Event_Manager" type="Node"]
+script = ExtResource("1_uowws")

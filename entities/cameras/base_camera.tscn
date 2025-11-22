@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://c8353cbyo1kil"]
+[gd_scene load_steps=2 format=3 uid="uid://c8353cbyo1kil"]
 
-[node name="Camera2D" type="Camera2D"]
+[ext_resource type="Script" uid="uid://cbkfipox03h68" path="res://entities/cameras/base_camera.gd" id="1_t305e"]
+
+[node name="Auto_Zoom_Camera" type="Camera2D"]
+script = ExtResource("1_t305e")

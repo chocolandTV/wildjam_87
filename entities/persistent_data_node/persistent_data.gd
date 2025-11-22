@@ -32,7 +32,8 @@ var scanned_planets : Dictionary = {
 var game_settings : Dictionary = {
     "volume" : 1.0,
     "graphics_quality" : "high",
-    "control_sensitivity" : 1.0
+    "control_sensitivity" : 1.0,
+    "camera_auto_zoom" : 1
 }
 var player_progress : Dictionary = {
     "current_evolution" : 1,
@@ -47,7 +48,7 @@ var player_progress : Dictionary = {
 ################################## Functions ##################################
 func _ready() -> void:
     ### DEBUG 
-    #reset_game_data()
+    reset_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
     _timer.start()
@@ -121,8 +122,10 @@ func reset_game_data() -> void:
     game_settings = {
     "volume" : 1.0,
     "graphics_quality" : "high",
-    "control_sensitivity" : 1.0
+    "control_sensitivity" : 1.0,
+    "camera_auto_zoom" : 1
     }
+
     player_progress  = {
     "current_evolution" : 1,
     "au_traveled" : 0,

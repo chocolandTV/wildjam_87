@@ -9,7 +9,7 @@
 radius = 478.29907
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
-radius = 1220.9381
+radius = 618.0809
 
 [node name="Planet_Neptune" type="StaticBody2D"]
 collision_layer = 4

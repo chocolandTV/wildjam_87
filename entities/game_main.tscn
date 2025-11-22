@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crlnkahcesrh7"]
+[gd_scene load_steps=14 format=3 uid="uid://crlnkahcesrh7"]
 
 [ext_resource type="Script" uid="uid://bxit05hn5wjn4" path="res://entities/game_main.gd" id="1_6oaob"]
 [ext_resource type="PackedScene" uid="uid://dmo7rb7w3ehp1" path="res://entities/player/player.tscn" id="2_fv4eh"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ctp6gpqx6ox41" path="res://entities/planets/planet_venus.tscn" id="9_dptmg"]
 [ext_resource type="PackedScene" uid="uid://cmyt4hhere2sl" path="res://entities/planets/planet_mercury.tscn" id="10_353k7"]
 [ext_resource type="PackedScene" uid="uid://dfpn2p6w3fywx" path="res://entities/planets/planet_01_Sun.tscn" id="11_1hqda"]
+[ext_resource type="PackedScene" uid="uid://c8353cbyo1kil" path="res://entities/cameras/base_camera.tscn" id="13_qluqr"]
 
 [node name="game_scene" type="Node2D"]
 modulate = Color(0.40069774, 0.40069774, 0.40069768, 1)
@@ -52,10 +53,6 @@ scale = Vector2(0.95, 0.95)
 position = Vector2(296800, 0)
 scale = Vector2(0.3, 0.3)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Solar_System"]
-position = Vector2(300700, 0)
-scale = Vector2(109, 109)
-
 [node name="Sun" parent="Solar_System" instance=ExtResource("11_1hqda")]
 position = Vector2(348221.03, 0)
 scale = Vector2(109, 109)
@@ -63,4 +60,4 @@ scale = Vector2(109, 109)
 [node name="Player" parent="." instance=ExtResource("2_fv4eh")]
 position = Vector2(-4935, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Auto_Zoom_Camera" parent="Player" instance=ExtResource("13_qluqr")]

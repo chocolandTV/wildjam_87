@@ -19,6 +19,12 @@ collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_abrql")
 
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1000
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("10_wvtmh")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
 texture = ExtResource("1_symyc")
@@ -59,9 +65,3 @@ position = Vector2(14, 160)
 [node name="Mining_Arm3" parent="." instance=ExtResource("9_bectd")]
 z_index = 1
 position = Vector2(-29, 153)
-
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -500
-texture_filter = 1
-texture = ExtResource("10_wvtmh")
-region_rect = Rect2(-5000, 5000, -5000, 5000)

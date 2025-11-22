@@ -9,7 +9,7 @@
 radius = 397.41666
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
-radius = 1141.1853
+radius = 455.43936
 
 [node name="Sun" type="StaticBody2D"]
 collision_layer = 4
