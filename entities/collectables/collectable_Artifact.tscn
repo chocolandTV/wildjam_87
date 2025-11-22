@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dndog24asitgt"]
+
+[ext_resource type="Texture2D" uid="uid://hsqhwffk57sj" path="res://models/icon_artefact.png" id="1_svkjo"]
+[ext_resource type="PackedScene" uid="uid://ddmrxxtr60cqp" path="res://entities/collectables/collect_area.tscn" id="2_6c2t4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ks3c"]
+
+[node name="Collectable_Artifact" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ks3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_svkjo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("1_svkjo")
+
+[node name="Collect_Area" parent="." instance=ExtResource("2_6c2t4")]
+collect_id = "Artifact"

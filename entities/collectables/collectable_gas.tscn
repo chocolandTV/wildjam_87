@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbm227fxiisyr"]
+
+[ext_resource type="Texture2D" uid="uid://bnabfryg3ovpl" path="res://models/icon_gas.png" id="1_crg7r"]
+[ext_resource type="PackedScene" uid="uid://ddmrxxtr60cqp" path="res://entities/collectables/collect_area.tscn" id="2_crg7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ks3c"]
+
+[node name="Collectable_Gas" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ks3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_crg7r")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("1_crg7r")
+
+[node name="Collect_Area" parent="." instance=ExtResource("2_crg7r")]
+collect_id = "Gas"

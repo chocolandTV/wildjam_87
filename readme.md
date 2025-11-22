@@ -7,3 +7,8 @@ he three broad composition classes of asteroids are C-, S-, and M-types.
 The orbits of asteroids can be changed by Jupiter's massive gravity – and by occasional close encounters with Mars or other objects. These encounters can knock asteroids out of the main belt, and hurl them into space in all directions across the orbits of the other planets. Stray asteroids and asteroid fragments have slammed into Earth and the other planets in the past, playing a major role in altering the geological history of the planets and in the evolution of life on Earth.
 
 Scientists continuously monitor Earth-crossing asteroids, whose paths intersect Earth's orbit, and near-Earth asteroids that approach Earth's orbital distance to within about 28 million miles (45 million kilometers) and may pose an impact danger. Radar is a valuable tool in detecting and monitoring potential impact hazards. By reflecting transmitted signals off objects, images and other information can be derived from the echoes. Scientists can learn a great deal about an asteroid's orbit, rotation, size, shape, and metal concentration.
+
+SAVE SKILLS WITH 
+    UpgradeManager.perform_upgrade(PersistentData.SKILL_MINING_EFFICIENCY)
+LOAD SKILLS WITH 
+	PersistentData.player_progress.get("upgrade_mining_efficiency")

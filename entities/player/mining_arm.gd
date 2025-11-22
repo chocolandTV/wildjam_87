@@ -60,7 +60,7 @@ func _check_mining(_delta : float) -> void:
 	if _is_button_pressed and _mining_target != null:
 		_cursor.global_position = (_mining_target.get_parent()as Node2D).global_position
 		_temp_timer += _delta
-		var _timeout :float = max(0.1,BASE_MINING_TIME - (PersistentData.player_progress.get("upgrade_mining_efficiency")* 0.01))
+		var _timeout :float = max(0.1,BASE_MINING_TIME - (PersistentData.player_progress.get("upgrade_mining_efficiency")* 0.1))
 		if _temp_timer >= _timeout:
 			_temp_timer= 0
 			_mining_target.get_resource()

@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
 radius = 106.7942
 
-[node name="Asteroid_01" type="CharacterBody2D"]
+[node name="Asteroid_01" type="RigidBody2D"]
 script = ExtResource("1_s646y")
 asteroid_info = ExtResource("2_dwjsg")
 

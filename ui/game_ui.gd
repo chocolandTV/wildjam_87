@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Exported Variables
 @export var interactive_box : Interactive_Box
+
 @export var info_panel_interact : Info_Panel_Interact
 @export var input_manager : Input_Manager
 @export var progression_bar : Control
@@ -30,11 +31,7 @@ func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> 
 	# Configure interaction panel based on canvas type
 	if planet_info.canvas_type_enum == planet_info.CANVAS_TYPE.SCANNING:
 
-		if _current_target_area.is_allready_scanned:
-			interactive_box.setup_planet_info(_current_canvas_info)
-		else:
-			interactive_box.setup_planet_info(_test_canvas_info)
-
+		interactive_box.setup_planet_info(_current_canvas_info)
 		#turn is_interacting to true
 		_is_interacting = true
 
@@ -43,6 +40,8 @@ func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> 
 
 func hide_interactive_box() -> void:
 	interactive_box.visible = false
+	# hide intern panels
+	interactive_box.hide_panels()
 	info_panel_interact.hide()
 	progression_bar.visible = false
 	progression_bar.timer.stop()

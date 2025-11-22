@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://djlnaq00u5bn3"]
+
+[ext_resource type="Texture2D" uid="uid://3kdxph7e6lq" path="res://models/icon_minerals.png" id="1_he6km"]
+[ext_resource type="PackedScene" uid="uid://ddmrxxtr60cqp" path="res://entities/collectables/collect_area.tscn" id="2_5ks3c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ks3c"]
+
+[node name="Collectable_Mineral" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ks3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_he6km")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("1_he6km")
+
+[node name="Collect_Area" parent="." instance=ExtResource("2_5ks3c")]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=14 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
 [ext_resource type="Script" uid="uid://bo2sy4xwreqtp" path="res://entities/player/background.gd" id="3_7thud"]
 [ext_resource type="PackedScene" uid="uid://3cabxb3ulqxx" path="res://entities/skills/upgrade_component.tscn" id="3_sglur"]
 [ext_resource type="Resource" uid="uid://dwahbjluh8j5i" path="res://data/skill_life_time.tres" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://cpuqg66mak16m" path="res://entities/player/player_visuals.gd" id="5_a1qjk"]
 [ext_resource type="Resource" uid="uid://berlgt8vrnb7a" path="res://data/skill_scan_efficiency.tres" id="5_fkugw"]
 [ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_mining_efficiency.tres" id="6_26q78"]
 [ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
@@ -27,9 +28,11 @@ texture_repeat = 2
 texture = ExtResource("10_wvtmh")
 script = ExtResource("3_7thud")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Player_visuals" type="Sprite2D" parent="." node_paths=PackedStringArray("_point_light")]
 z_index = 2
 texture = ExtResource("1_symyc")
+script = ExtResource("5_a1qjk")
+_point_light = NodePath("../PointLight2D")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("1_symyc")
@@ -61,9 +64,11 @@ z_index = 1
 position = Vector2(52, 146)
 
 [node name="Mining_Arm2" parent="." instance=ExtResource("9_bectd")]
+visible = false
 z_index = 1
 position = Vector2(14, 160)
 
 [node name="Mining_Arm3" parent="." instance=ExtResource("9_bectd")]
+visible = false
 z_index = 1
 position = Vector2(-29, 153)

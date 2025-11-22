@@ -22,6 +22,7 @@ GameUi="*res://ui/game_ui.tscn"
 CycleManager="*res://entities/Cylce/cycle_manager.tscn"
 UpgradeManager="*res://entities/upgrade/upgrade_manager.tscn"
 EventManager="*res://autoload/event_manager.tscn"
+AsteroidManager="*res://autoload/asteroid_manager.tscn"
 
 [file_customization]
 

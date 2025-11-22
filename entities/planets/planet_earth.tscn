@@ -34,9 +34,11 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_xxvfu")
 
 [node name="Moon" parent="." node_paths=PackedStringArray("center") instance=ExtResource("5_qflrw")]
-position = Vector2(-3844, 11)
+position = Vector2(-1073.0002, 11.000001)
 scale = Vector2(0.27, 0.27)
 center = NodePath("../Sprite2D")
+radius = 1000.0
+angular_speed = 0.1
 
 [connection signal="body_entered" from="Information_Area" to="Information_Area" method="on_player_entered_area"]
 [connection signal="body_exited" from="Information_Area" to="Information_Area" method="on_player_exited_area"]

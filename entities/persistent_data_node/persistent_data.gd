@@ -30,7 +30,7 @@ var scanned_planets : Dictionary = {
 }
 
 var game_settings : Dictionary = {
-    "volume" : 1.0,
+    "volume" : 0.5,
     "graphics_quality" : "high",
     "control_sensitivity" : 1.0,
     "camera_auto_zoom" : 1
@@ -120,7 +120,7 @@ func reset_game_data() -> void:
     }
 
     game_settings = {
-    "volume" : 1.0,
+    "volume" : 0.5,
     "graphics_quality" : "high",
     "control_sensitivity" : 1.0,
     "camera_auto_zoom" : 1

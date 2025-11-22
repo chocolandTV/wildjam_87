@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=18 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
 [ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="2_xh48a"]
 [ext_resource type="Script" uid="uid://cyeclsbos0jjr" path="res://ui/progression_bar.gd" id="3_3vkek"]
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
+[ext_resource type="Script" uid="uid://dkulwp55dtdxt" path="res://ui/interactive_box_progress_bar.gd" id="4_iqfqv"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 [ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
 [ext_resource type="Texture2D" uid="uid://drhgtrwxhdqlk" path="res://models/icon_evolution.png" id="8_85ca7"]
@@ -38,7 +39,7 @@ input_manager = NodePath("Input_Manager")
 progression_bar = NodePath("Progression_Bar")
 _test_canvas_info = SubResource("Resource_2uxy6")
 
-[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel")]
+[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel", "progress_Bar")]
 visible = false
 layout_mode = 3
 anchors_preset = 3
@@ -46,10 +47,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -273.775
-offset_right = 67.99963
-offset_bottom = 28.224976
+offset_left = -219.99963
+offset_top = -301.99997
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_dcmab")
@@ -63,6 +62,26 @@ planet_distance_sun_value = NodePath("PanelContainer/MarginContainer/VBoxContain
 planet_orbital_period_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/orbit_value")
 planet_temperature_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/temp_value")
 planet_panel = NodePath("PanelContainer")
+progress_Bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="Interactive_Box" node_paths=PackedStringArray("_panel_container_info")]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 10.0
+offset_right = 192.0
+offset_bottom = 37.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_iqfqv")
+_panel_container_info = NodePath("../PanelContainer")
+
+[node name="Label" type="Label" parent="Interactive_Box/ProgressBar"]
+custom_minimum_size = Vector2(292, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Scanning...."
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Interactive_Box"]
 visible = false
@@ -151,10 +170,14 @@ text = "Humulli"
 uppercase = true
 
 [node name="desc_value" type="RichTextLabel" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+custom_minimum_size = Vector2(107, 36)
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 8
-text = "This Planet look really like our Hive Planet, it could be a great restart"
+text = "This look really cool, i need more Scan efficiency to get more detail"
 fit_content = true
+scroll_active = false
+tab_size = 5
 
 [node name="mass_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2

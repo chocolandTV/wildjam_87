@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddmrxxtr60cqp"]
+
+[ext_resource type="Script" uid="uid://buehtgohxix2o" path="res://entities/collectables/collect_mineral.gd" id="1_yurnc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jykwl"]
+radius = 66.4906
+
+[node name="Collect_Area" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_yurnc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jykwl")

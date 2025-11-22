@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wnf7cyav7375"]
+
+[ext_resource type="Script" uid="uid://c2jv8iw7bhcxp" path="res://entities/collectables/collectable_mother.gd" id="1_l5hmi"]
+
+[node name="Collectable_Mother" type="Node2D"]
+script = ExtResource("1_l5hmi")
