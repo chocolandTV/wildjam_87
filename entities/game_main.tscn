@@ -64,5 +64,6 @@ scale = Vector2(109, 109)
 [node name="Asteroid_mother" parent="Solar_System" instance=ExtResource("13_ts023")]
 
 [node name="Player" parent="." instance=ExtResource("2_fv4eh")]
+position = Vector2(-4988, 0)
 
 [node name="Auto_Zoom_Camera" parent="Player" instance=ExtResource("13_qluqr")]

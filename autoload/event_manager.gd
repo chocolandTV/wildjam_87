@@ -3,13 +3,22 @@ extends Node
 # Signals
 signal camera_player_entered_planet_zone(_radius : float)
 signal camera_player_exited_planet_zone()
+signal camera_player_changed()
+
+signal asteroid_mother_setted()
+
+signal scanned_planet_updated()
 
 ## Public Variable
 var collectable_mother : Node2D = null
 var asteroids_mother : Node2D = null
 var player_node : Node2D = null
 ##################################################################################### CALL FUNCTIONS #################
-
+func on_scanned_planet_updated() ->void:
+    scanned_planet_updated.emit()
+    
+func on_player_changed_zoom(_current_zoom: Vector2)->void:
+    camera_player_changed.emit(_current_zoom)
 
 func on_player_entered_planet_zone(_radius :float) ->void:
     camera_player_entered_planet_zone.emit(_radius)
@@ -24,7 +33,11 @@ func set_collectable_mother(_node : Node2D) ->void:
 func set_player_node(_node) ->void:
     if _node:
         player_node = _node
+        if asteroids_mother != null:
+            asteroid_mother_setted.emit()
 
 func set_asteroid_mother(_node) ->void:
     if _node:
         asteroids_mother = _node
+        if player_node != null:
+            asteroid_mother_setted.emit()

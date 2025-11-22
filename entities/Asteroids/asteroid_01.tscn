@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuw6h3i0n5nup"]
+[gd_scene load_steps=6 format=3 uid="uid://cuw6h3i0n5nup"]
 
 [ext_resource type="Script" uid="uid://cihr0qps5xr1s" path="res://entities/Asteroids/asteroid_base.gd" id="1_s646y"]
 [ext_resource type="Texture2D" uid="uid://bxmqtucdftbo0" path="res://models/asteroid_01.png" id="1_vpnsi"]
-[ext_resource type="Resource" uid="uid://la8r7p2rybfu" path="res://entities/Asteroids/asteroid_01_base_mineral.tres" id="2_dwjsg"]
 [ext_resource type="PackedScene" uid="uid://cab1qufvhngpw" path="res://entities/Asteroids/mining_component.tscn" id="5_4ujlo"]
 [ext_resource type="PackedScene" uid="uid://bg67ohu1javcw" path="res://entities/Asteroids/mining_area.tscn" id="6_dkti8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
 radius = 106.7942
 
-[node name="Asteroid_01" type="RigidBody2D"]
+[node name="Asteroid_01" type="RigidBody2D" node_paths=PackedStringArray("mining_component", "timer")]
+z_index = 1
 script = ExtResource("1_s646y")
-asteroid_info = ExtResource("2_dwjsg")
+mining_component = NodePath("Mining_Component")
+timer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0awka")
@@ -26,3 +27,7 @@ texture = ExtResource("1_vpnsi")
 
 [node name="Mining_Area2D" parent="." node_paths=PackedStringArray("mining_component") instance=ExtResource("6_dkti8")]
 mining_component = NodePath("../Mining_Component")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true

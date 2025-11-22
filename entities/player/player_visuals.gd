@@ -10,14 +10,15 @@ func _ready() -> void:
     _parent = get_parent()
 
 func _physics_process(_delta: float) -> void:
-
-    if _parent.get_player_facing_right() and !_is_right:
+    if _parent.get_player_facing_right() and _is_right:
+        return
+    if _parent.get_player_facing_right():
         _is_right = true
-        flip_h = _is_right
+        flip_h = !_is_right
         _point_light.scale = Vector2(1,1)
     else:
         _is_right = false
-        flip_h = _is_right
+        flip_h = !_is_right
         _point_light.scale = Vector2(-1,1)
 
 #### LATER ANIMATIONS

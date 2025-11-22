@@ -33,39 +33,39 @@ func setup_planet_info(_info : Canvas_Info) -> void:
 	#	planet_description_value.text = "This look really cool, i need more Scan efficiency to get more detail"
 
 	if _skill_level >=2:
-		planet_mass_value.text = _info.canvas_mass# level 2
+		planet_mass_value.text = _info.canvas_mass
 	else:
 		planet_mass_value.text = "> ?"
 
-	if _skill_level >=4:
-		planet_gravity_value.text = _info.canvas_gravity# level 4
+	if _skill_level >=3:
+		planet_gravity_value.text = _info.canvas_gravity
 	else:
 		planet_gravity_value.text =" > ?"
 
-	if _skill_level >=6:
-		planet_atmosphere_value.text = _info.canvas_atmosphere# level 6
+	if _skill_level >=4:
+		planet_atmosphere_value.text = _info.canvas_atmosphere
 	else:
 		planet_atmosphere_value.text = "?"
 
-	if _skill_level >=8:
-		planet_distance_sun_value.text = _info.canvas_distance_sun # level 8
+	if _skill_level >=5:
+		planet_distance_sun_value.text = _info.canvas_distance_sun
 	else:
 		planet_distance_sun_value.text = "?"
 	
-	if _skill_level >=12:
-		planet_orbital_period_value.text = _info.canvas_orbital_period # level 12
+	if _skill_level >=6:
+		planet_orbital_period_value.text = _info.canvas_orbital_period 
 	else:
 		planet_orbital_period_value.text = "?"
 	
-	if _skill_level >=15:
-		planet_temperature_value.text = _info.canvas_temperature # level 15
+	if _skill_level >=7:
+		planet_temperature_value.text = _info.canvas_temperature 
 	else:
 		planet_temperature_value.text = "?"
 
 	#### START SCANNING AFTER FINISH SHOW PLANET INFO
 	progress_Bar.show()
 
-	progress_Bar.start_scanning_structure()
+	progress_Bar.start_scanning_structure(_info.canvas_name, _skill_level)
 
 func hide_panels() ->void:
 	planet_panel.hide()

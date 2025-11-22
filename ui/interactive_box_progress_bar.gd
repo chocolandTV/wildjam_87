@@ -3,7 +3,13 @@ extends ProgressBar
 @export var _panel_container_info : PanelContainer
 @export var base_scan_duration : float = 3.0
 
-func start_scanning_structure() ->void:
+var planet_name : String = "TEST"
+var skill_level : int = 0
+
+
+func start_scanning_structure(_planet :String, _skill_level) ->void:
+    planet_name = _planet
+    skill_level = _skill_level
     value = 0
 
     var _skill_scan_efficiency : int = 1
@@ -19,6 +25,9 @@ func start_scanning_structure() ->void:
 
 func _on_scan_finished() -> void:
     print("on scan complete")
+    if skill_level >= 7:
+        # SET PLANET TO SCANNED
+        PersistentData.scanned_planets.set(planet_name,1)
     # done
     #show panel container
     _panel_container_info.show()

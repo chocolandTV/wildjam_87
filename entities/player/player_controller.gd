@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player_Controller
 
 #Constants
-const SPEED_BASE : float = 300.0 # Base Movement speed of the player
+const SPEED_BASE : float = 1000.0 # Base Movement speed of the player
 const DASH_SPEED : float = 800.0 # Dash speed of the player
 const DASH_COOLDOWN : float = 5.0 # Dash cooldown time in seconds
 #Private Variables
@@ -16,11 +16,12 @@ var _session_traveled : float = 0.0
 var _start_position : Vector2 = Vector2.ZERO # Starting position for distance calculation
 # on ready varaibles
 @onready var _dash_timer : Timer = $Dash_Timer
+@onready var _particle_system : CPUParticles2D = $CPUParticles2D
 
 ######################### FUNCTIONS #########################
 func _ready() -> void:
 	_dash_timer.wait_time = DASH_COOLDOWN - (PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)* 0.1)
-	
+
 	# minimum _dash cooldown time
 	if _dash_timer.wait_time < 0.25:
 		_dash_timer.wait_time = 0.25
@@ -43,7 +44,10 @@ func _physics_process(_delta: float) -> void:
 	if _can_move:
 		_process_input()
 		_move_player(_delta)
+	# Speed up Particle System
+	_particle_system.gravity.x = -velocity.x * 1.8
 	move_and_slide()
+
 	# Update distance traveled
 	var _new_kilometers : float =  global_position.distance_to(_start_position)
 	_session_traveled += _new_kilometers
@@ -66,6 +70,7 @@ func _process_input() -> void:
 func _move_player(_delta: float) -> void:
 	# Calculate velocity based on input and speed
 	velocity = _input_vector.normalized() * SPEED_BASE * PersistentData.player_progress.get(PersistentData.SKILL_SPEED,1)
+	
 
 # Public Methods
 func get_player_facing_right() -> bool:

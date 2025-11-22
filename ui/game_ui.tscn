@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=31 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
@@ -15,6 +15,17 @@
 [ext_resource type="Texture2D" uid="uid://bnabfryg3ovpl" path="res://models/icon_gas.png" id="10_gm2vc"]
 [ext_resource type="Texture2D" uid="uid://b5rg2x0d0hful" path="res://models/icon_crystal.png" id="11_85ca7"]
 [ext_resource type="Texture2D" uid="uid://hsqhwffk57sj" path="res://models/icon_artefact.png" id="12_iqfqv"]
+[ext_resource type="Script" uid="uid://bo0o74dvm1ft" path="res://ui/system_map.gd" id="16_22vk4"]
+[ext_resource type="Texture2D" uid="uid://x6h4p3osctwh" path="res://models/ui_map.png" id="16_hsnwv"]
+[ext_resource type="Texture2D" uid="uid://c8hfju1s45spd" path="res://models/icons_neptune.png" id="17_ieeuq"]
+[ext_resource type="Texture2D" uid="uid://b0wypay1uqtu8" path="res://models/icons_uranus.png" id="18_4b5nc"]
+[ext_resource type="Texture2D" uid="uid://b71owgeyxe5ck" path="res://models/icons_saturn.png" id="19_22vk4"]
+[ext_resource type="Texture2D" uid="uid://b423iuyvlar4p" path="res://models/icons_jupiter.png" id="20_ipw3f"]
+[ext_resource type="Texture2D" uid="uid://crgm5otbxbtow" path="res://models/icons_mars.png" id="21_mq1hb"]
+[ext_resource type="Texture2D" uid="uid://bshnqrw0w1c7w" path="res://models/icons_earth.png" id="22_br14n"]
+[ext_resource type="Texture2D" uid="uid://cxo32h1pvtqmo" path="res://models/icons_venus.png" id="23_c2itc"]
+[ext_resource type="Texture2D" uid="uid://eoia7q1ke85k" path="res://models/icons_mercury.png" id="24_cq5fk"]
+[ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="26_ipw3f"]
 
 [sub_resource type="Resource" id="Resource_2uxy6"]
 script = ExtResource("2_xh48a")
@@ -30,6 +41,10 @@ canvas_temperature = "undefined"
 metadata/_custom_type_script = "uid://clnk0ny17n861"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7kcv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqfqv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsnwv"]
 
 [node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box", "info_panel_interact", "input_manager", "progression_bar")]
 script = ExtResource("1_w46tp")
@@ -501,3 +516,154 @@ stretch_mode = 2
 custom_minimum_size = Vector2(133, 32)
 layout_mode = 2
 text = "Speed:  99999 AU"
+
+[node name="System_Map" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+script = ExtResource("16_22vk4")
+
+[node name="MarginContainer" type="MarginContainer" parent="System_Map"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="System_Map/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iqfqv")
+
+[node name="MAP" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer"]
+modulate = Color(0.24313726, 0.5372549, 0.078431375, 1)
+layout_mode = 2
+texture = ExtResource("16_hsnwv")
+
+[node name="Panel" type="Panel" parent="System_Map/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hsnwv")
+
+[node name="Neptune" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = -15.0
+offset_top = 112.0
+offset_right = 17.0
+offset_bottom = 144.0
+texture = ExtResource("17_ieeuq")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Uranus" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = -8.0
+offset_top = 112.0
+offset_right = 248.0
+offset_bottom = 367.99982
+texture = ExtResource("18_4b5nc")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Saturn" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 112.0
+offset_right = 259.0
+offset_bottom = 367.99982
+texture = ExtResource("19_22vk4")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Jupiter" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 272.0
+offset_bottom = 367.99982
+texture = ExtResource("20_ipw3f")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Mars" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 35.0
+offset_top = 112.0
+offset_right = 291.0
+offset_bottom = 367.99982
+texture = ExtResource("21_mq1hb")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Earth" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 51.0
+offset_top = 112.0
+offset_right = 307.0
+offset_bottom = 367.99982
+texture = ExtResource("22_br14n")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Venus" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 67.0
+offset_top = 112.0
+offset_right = 323.0
+offset_bottom = 367.99982
+texture = ExtResource("23_c2itc")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Mercury" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 83.0
+offset_top = 112.0
+offset_right = 339.0
+offset_bottom = 367.99982
+texture = ExtResource("24_cq5fk")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Sun" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 113.0
+offset_top = 112.0
+offset_right = 369.0
+offset_bottom = 367.99982
+texture = ExtResource("26_ipw3f")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Player" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = -15.0
+offset_top = 83.0
+offset_right = 241.0
+offset_bottom = 338.99982
+texture = ExtResource("8_hgyfx")
+expand_mode = 1
+stretch_mode = 2
