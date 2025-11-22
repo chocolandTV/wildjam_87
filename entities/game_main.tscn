@@ -20,7 +20,7 @@ script = ExtResource("1_6oaob")
 [node name="Solar_System" type="Node2D" parent="."]
 
 [node name="Portal" parent="Solar_System" instance=ExtResource("2_sui74")]
-position = Vector2(-1746, 82)
+position = Vector2(-4935, 11)
 
 [node name="Planet_Neptune" parent="Solar_System" instance=ExtResource("3_tbisv")]
 scale = Vector2(3.9, 3.9)
@@ -61,6 +61,6 @@ position = Vector2(348221.03, 0)
 scale = Vector2(109, 109)
 
 [node name="Player" parent="." instance=ExtResource("2_fv4eh")]
-position = Vector2(-1746, 0)
+position = Vector2(-4935, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

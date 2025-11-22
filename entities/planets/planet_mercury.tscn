@@ -12,6 +12,8 @@ radius = 397.41666
 radius = 1141.1853
 
 [node name="Planet_Mercury" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_3oayf")
 planet_radius = 0.3
 planet_info = ExtResource("2_3oayf")

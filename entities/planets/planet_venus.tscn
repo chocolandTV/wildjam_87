@@ -12,6 +12,8 @@ radius = 478.29907
 radius = 1220.9381
 
 [node name="Planet_Venus" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_0vd8e")
 planet_radius = 0.95
 planet_info = ExtResource("2_0vd8e")

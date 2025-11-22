@@ -12,6 +12,8 @@ radius = 478.29907
 radius = 1220.9381
 
 [node name="Planet_Saturn" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_ujk7s")
 planet_radius = 9.5
 planet_info = ExtResource("2_1n0mq")
