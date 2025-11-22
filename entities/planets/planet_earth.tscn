@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcth88gs8dkhc"]
+[gd_scene load_steps=8 format=3 uid="uid://bcth88gs8dkhc"]
 
 [ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_b53n0"]
 [ext_resource type="Resource" uid="uid://dmudi0iph216s" path="res://data/planet_earth.tres" id="2_b53n0"]
 [ext_resource type="Texture2D" uid="uid://b4o8jfip1b68r" path="res://models/planet_earth.png" id="3_0k7nr"]
 [ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_57sh7"]
+[ext_resource type="PackedScene" uid="uid://s7ghyryj82r6" path="res://entities/planets/earth_moon.tscn" id="5_qflrw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
 radius = 478.29907
@@ -29,6 +30,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
 shape = SubResource("CircleShape2D_xxvfu")
+
+[node name="Moon" parent="." node_paths=PackedStringArray("center") instance=ExtResource("5_qflrw")]
+position = Vector2(-3844, 11)
+scale = Vector2(0.27, 0.27)
+center = NodePath("../Sprite2D")
 
 [connection signal="body_entered" from="Information_Area" to="Information_Area" method="on_player_entered_area"]
 [connection signal="body_exited" from="Information_Area" to="Information_Area" method="on_player_exited_area"]
