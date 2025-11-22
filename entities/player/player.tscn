@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=12 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
 [ext_resource type="Resource" uid="uid://c7apfgbi6ab8g" path="res://data/skill_upgrade_speed.tres" id="8_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://dgdcwqnuqa5cs" path="res://entities/player/mining_arm.tscn" id="9_bectd"]
+[ext_resource type="Texture2D" uid="uid://cpo6y3wtlnguy" path="res://models/space_bg_gimp.png" id="10_wvtmh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_abrql"]
 radius = 66.09841
@@ -58,3 +59,9 @@ position = Vector2(14, 160)
 [node name="Mining_Arm3" parent="." instance=ExtResource("9_bectd")]
 z_index = 1
 position = Vector2(-29, 153)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -500
+texture_filter = 1
+texture = ExtResource("10_wvtmh")
+region_rect = Rect2(-5000, 5000, -5000, 5000)

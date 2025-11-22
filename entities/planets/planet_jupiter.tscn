@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://5phrsr7c8ryf"]
+
+[ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_j484b"]
+[ext_resource type="Resource" uid="uid://c0yrqdvwwvxyb" path="res://data/planet_jupiter.tres" id="2_j484b"]
+[ext_resource type="Texture2D" uid="uid://bskn4mvs2xr0h" path="res://models/planet_jupiter.png" id="3_j484b"]
+[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_wi4kx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
+radius = 478.29907
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
+radius = 1220.9381
+
+[node name="Planet_Jupiter" type="StaticBody2D"]
+script = ExtResource("1_j484b")
+planet_radius = 11.0
+planet_info = ExtResource("2_j484b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_j484b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rh1pq")
+debug_color = Color(0.8756013, 0.34474754, 0, 0.41960785)
+
+[node name="Information_Area" parent="." instance=ExtResource("4_wi4kx")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
+shape = SubResource("CircleShape2D_xxvfu")
+
+[connection signal="body_entered" from="Information_Area" to="Information_Area" method="on_player_entered_area"]
+[connection signal="body_exited" from="Information_Area" to="Information_Area" method="on_player_exited_area"]

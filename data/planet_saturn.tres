@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Canvas_Info" load_steps=2 format=3 uid="uid://ba28mybfy5qys"]
+
+[ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="1_naot7"]
+
+[resource]
+script = ExtResource("1_naot7")
+canvas_name = "M- OE06"
+canvas_description = "This Planet is a gas giant,it's interior is thought to be composed of a rocky core, surrounded by a deep layer of metallic hydrogen"
+canvas_mass = "5.6834×10^26"
+canvas_gravity = "10.44 m/s2"
+canvas_atmosphere = "Hydrogen"
+canvas_habitablity = "0%"
+canvas_distance_sun = "9.59 AU"
+canvas_orbital_period = "0,440 d"
+canvas_temperature = "88 K"
+metadata/_custom_type_script = "uid://clnk0ny17n861"

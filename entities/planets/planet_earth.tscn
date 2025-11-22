@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcth88gs8dkhc"]
+
+[ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_b53n0"]
+[ext_resource type="Resource" uid="uid://dmudi0iph216s" path="res://data/planet_earth.tres" id="2_b53n0"]
+[ext_resource type="Texture2D" uid="uid://b4o8jfip1b68r" path="res://models/planet_earth.png" id="3_0k7nr"]
+[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_57sh7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
+radius = 478.29907
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
+radius = 1220.9381
+
+[node name="Planet_Earth" type="StaticBody2D"]
+script = ExtResource("1_b53n0")
+planet_radius = 0.95
+planet_info = ExtResource("2_b53n0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_0k7nr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rh1pq")
+debug_color = Color(0.8756013, 0.34474754, 0, 0.41960785)
+
+[node name="Information_Area" parent="." instance=ExtResource("4_57sh7")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
+shape = SubResource("CircleShape2D_xxvfu")
+
+[connection signal="body_entered" from="Information_Area" to="Information_Area" method="on_player_entered_area"]
+[connection signal="body_exited" from="Information_Area" to="Information_Area" method="on_player_exited_area"]

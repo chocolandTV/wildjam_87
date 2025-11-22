@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Canvas_Info" load_steps=2 format=3 uid="uid://vylhfegyurop"]
+
+[ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="1_4uk3p"]
+
+[resource]
+script = ExtResource("1_4uk3p")
+canvas_name = "M- OE04"
+canvas_description = "This Planet is a desert-like rocky planet with a tenuous atmosphere that is primarily carbon dioxide (CO2)"
+canvas_mass = "6.4171×10^23 kg"
+canvas_gravity = "3.72076 m/s2"
+canvas_atmosphere = "carbon dioxide"
+canvas_habitablity = "3%"
+canvas_distance_sun = "1 AU"
+canvas_orbital_period = "1.02 d"
+canvas_temperature = "209 K"
+metadata/_custom_type_script = "uid://clnk0ny17n861"

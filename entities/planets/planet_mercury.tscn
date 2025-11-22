@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmyt4hhere2sl"]
+
+[ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_3oayf"]
+[ext_resource type="Resource" uid="uid://dpxtfs2qm7xu8" path="res://data/planet_mercury.tres" id="2_3oayf"]
+[ext_resource type="Texture2D" uid="uid://bh8843ylvrrkn" path="res://models/planet_mercury.png" id="3_ebm8p"]
+[ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_08251"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
+radius = 397.41666
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxvfu"]
+radius = 1141.1853
+
+[node name="Planet_Mercury" type="StaticBody2D"]
+script = ExtResource("1_3oayf")
+planet_radius = 0.3
+planet_info = ExtResource("2_3oayf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ebm8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rh1pq")
+
+[node name="Information_Area" parent="." instance=ExtResource("4_08251")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Information_Area"]
+shape = SubResource("CircleShape2D_xxvfu")
+
+[connection signal="body_entered" from="Information_Area" to="Information_Area" method="on_player_entered_area"]
+[connection signal="body_exited" from="Information_Area" to="Information_Area" method="on_player_exited_area"]
