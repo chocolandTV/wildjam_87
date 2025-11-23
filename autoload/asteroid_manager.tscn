@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://de5ubai7jfno4" path="res://autoload/asteroid_manager.gd" id="1_ly3up"]
 [ext_resource type="PackedScene" uid="uid://cuw6h3i0n5nup" path="res://entities/Asteroids/asteroid_01.tscn" id="2_edwhg"]
 
-[node name="Asteroid_Manager" type="Node" node_paths=PackedStringArray("timer")]
+[node name="Asteroid_Manager" type="Node"]
 script = ExtResource("1_ly3up")
 asteroid_scene = ExtResource("2_edwhg")
-timer = NodePath("Timer")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0

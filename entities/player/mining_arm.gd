@@ -11,7 +11,7 @@ const BASE_MINING_TIME : float = 1.0
 # Private Variables
 var _is_button_pressed: bool = false
 var _mining_target : Node2D = null
-var _temp_timer : float = 0.0
+#var _temp_timer : float = 0.0
 # Ready Method connect to signals
 func _ready() -> void:
 

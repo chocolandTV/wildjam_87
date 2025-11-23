@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuw6h3i0n5nup"]
+[gd_scene load_steps=13 format=3 uid="uid://cuw6h3i0n5nup"]
 
 [ext_resource type="Script" uid="uid://cihr0qps5xr1s" path="res://entities/Asteroids/asteroid_base.gd" id="1_s646y"]
 [ext_resource type="Texture2D" uid="uid://bxmqtucdftbo0" path="res://models/asteroid_01.png" id="1_vpnsi"]
@@ -8,9 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://bg67ohu1javcw" path="res://entities/Asteroids/mining_area.tscn" id="6_dkti8"]
 [ext_resource type="PackedScene" uid="uid://b5way0l1dg5yo" path="res://entities/collectables/collectable_crystal.tscn" id="7_16r6w"]
 [ext_resource type="PackedScene" uid="uid://dndog24asitgt" path="res://entities/collectables/collectable_Artifact.tscn" id="8_1gjvh"]
+[ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="9_4l2sp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
 radius = 106.7942
+
+[sub_resource type="Curve" id="Curve_16r6w"]
+_data = [Vector2(0.0039525703, 1), 0.0, 0.0, 0, 0, Vector2(0.9841897, 0.03260863), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1gjvh"]
+offsets = PackedFloat32Array(0, 0.5198238, 1)
+colors = PackedColorArray(1, 1, 1, 0.29803923, 1, 1, 1, 0.49019608, 1, 1, 1, 1)
 
 [node name="Asteroid_01" type="RigidBody2D" node_paths=PackedStringArray("mining_component", "timer")]
 z_index = 2
@@ -26,9 +35,11 @@ timer = NodePath("Timer")
 shape = SubResource("CircleShape2D_0awka")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("1_vpnsi")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 1
 texture = ExtResource("1_vpnsi")
 
 [node name="Mining_Component" parent="." instance=ExtResource("5_4ujlo")]
@@ -40,6 +51,19 @@ collectable_crystal = ExtResource("7_16r6w")
 collectable_artifact = ExtResource("8_1gjvh")
 mining_component = NodePath("../Mining_Component")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+texture = ExtResource("9_4l2sp")
+lifetime = 8.0
+direction = Vector2(-1, 0)
+spread = 5.0
+gravity = Vector2(-1, 0)
+angular_velocity_max = 1.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_16r6w")
+color_ramp = SubResource("Gradient_1gjvh")
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
+wait_time = 60.0
+one_shot = true

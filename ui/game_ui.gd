@@ -6,7 +6,7 @@ extends CanvasLayer
 @export var info_panel_interact : Info_Panel_Interact
 @export var input_manager : Input_Manager
 @export var progression_bar : Control
-@export var _test_canvas_info : Canvas_Info
+#@export var _test_canvas_info : Canvas_Info
 @export var _transition_effect_control: Control
 @export var _transition_animation : AnimationPlayer
 
@@ -18,7 +18,7 @@ var _current_canvas_info : Canvas_Info
 var _current_target_area : Area2D = null
 
 func _ready() -> void:
-	input_manager.interact_pressed.connect(_start_progress_bar_interaction)
+	#input_manager.interact_pressed.connect(_start_progress_bar_interaction)
 	input_manager.pause_pressed.connect(_on_game_paused)
 	input_manager.menu_pressed.connect(_on_game_menu_toggled)
 	CycleManager.cycle_done.connect(_on_cycle_changed)

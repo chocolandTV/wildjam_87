@@ -60,7 +60,7 @@ func _check_asteroid_is_dead() ->void:
         ##Shrink animation particle and sound
         EventManager.on_asteroid_done(_asteroid.global_position)
          
-        AsteroidManager.reset_asteroid(get_parent())
+        get_parent()._play_burn_and_reset()
 
 func _spawn_collectable(_scene : PackedScene)->void:
     # create new variable

@@ -1,6 +1,6 @@
 extends Node
 class_name Input_Manager
-signal interact_pressed
+#signal interact_pressed
 signal pause_pressed
 signal menu_pressed
 
