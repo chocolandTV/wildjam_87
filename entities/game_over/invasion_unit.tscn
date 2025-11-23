@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d10loxwicg8w3"]
+
+[ext_resource type="Texture2D" uid="uid://df5yuii1v33jd" path="res://models/player_life_half2.png" id="1_mnrd1"]
+[ext_resource type="Script" uid="uid://ckb1q24sp5d2v" path="res://entities/game_over/player_animation_to_earth.gd" id="2_frcl7"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_mnrd1")
+script = ExtResource("2_frcl7")

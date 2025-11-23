@@ -16,11 +16,11 @@ func _ready() -> void:
 
 func _on_cycle_changed()->void:
     # SET NEW UPGRADE LEVEL
-    speed_value_label.text = "+ %d%" %[PersistentData.player_progress.get("upgrade_speed") * 100]
-    life_value_label.text  = "+ %d%" %[PersistentData.player_progress.get("upgrade_lifetime")*2]
-    boost_value_label.text = "+ %d%" %[PersistentData.player_progress.get("upgrade_dash") *500]
-    scanning_value_label.text = "+ %d%" %[PersistentData.player_progress.get("upgrade_scan_efficiency")*5]
-    mining_value_label.text = "+ %d%" %[PersistentData.player_progress.get("upgrade_mining_efficiency")*15]
+    speed_value_label.text = "+ %d %%" %[PersistentData.player_progress.get("upgrade_speed",1) * 100]
+    life_value_label.text  = "+ %d %%" %[PersistentData.player_progress.get("upgrade_lifetime",1)*2]
+    boost_value_label.text = "+ %d %%" %[PersistentData.player_progress.get("upgrade_dash",1) *500]
+    scanning_value_label.text = "+ %d %%" %[PersistentData.player_progress.get("upgrade_scan_efficiency",1)*5]
+    mining_value_label.text = "+ %d %%" %[PersistentData.player_progress.get("upgrade_mining_efficiency",1)*15]
 
     #_margin_container.show()
     _animation_player.play("show")

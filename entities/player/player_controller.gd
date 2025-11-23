@@ -35,6 +35,7 @@ func _ready() -> void:
 	_start_position = global_position
 	# SET PLAYER NODE FOR ASTROID MANAGER
 	EventManager.set_player_node(self)
+	_killometers_traveled = PersistentData.player_progress.get("au_traveled", 0)
 
 ## Input Method
 func _input(event: InputEvent) -> void:
@@ -56,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 
 	#save killometers to variable
 	_killometers_traveled += _new_kilometers
-
+	PersistentData.player_progress.set("au_traveled",_killometers_traveled)
 	#reset session for upgrade
 	if _session_traveled > 10000:
 		_session_traveled -= 10000

@@ -36,7 +36,10 @@ const BASE_PLAYER_UI_START_POS : Vector2 = Vector2(-20.0,111.0)
 func _ready() -> void:
     update_planet_color()
     EventManager.scanned_planet_updated.connect(_on_planet_scanned_with_high_scan)
+    EventManager.hide_ui.connect(_on_game_over_hide)
 
+func _on_game_over_hide()->void:
+    hide()
 func _on_planet_scanned_with_high_scan() -> void:
     update_planet_color()
 

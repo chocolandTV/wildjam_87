@@ -69,3 +69,5 @@ func _on_scan_finished() -> void:
     #### WIN CONDITION 
     if planet_name == "M-OE03":
         print("Game Win")
+        PersistentData.player_progress.set("player_archived_game_goal",1)
+        EventManager.on_game_over()

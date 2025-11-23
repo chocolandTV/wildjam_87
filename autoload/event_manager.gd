@@ -13,12 +13,18 @@ signal camera_zoom_changed( _zoom : Vector2)
 
 signal collectable_done(_pos : Vector2)
 signal asteroid_done(_pos : Vector2)
+signal game_over()
+signal hide_ui()
 
 ## Public Variable
 var collectable_mother : Node2D = null
 var asteroids_mother : Node2D = null
 var player_node : Node2D = null
 ##################################################################################### CALL FUNCTIONS #################
+func on_hide_ui() ->void:
+    hide_ui.emit()
+func on_game_over() ->void:
+    game_over.emit()
 func on_asteroid_done(_pos :Vector2) ->void:
     asteroid_done.emit(_pos)
 

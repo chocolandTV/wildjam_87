@@ -1,0 +1,398 @@
+[gd_scene load_steps=11 format=3 uid="uid://t6sdwj3wrb24"]
+
+[ext_resource type="Script" uid="uid://71w2lkkv857g" path="res://entities/game_over/end_scene.gd" id="1_03n2b"]
+[ext_resource type="PackedScene" uid="uid://bcth88gs8dkhc" path="res://entities/planets/planet_earth.tscn" id="1_662pc"]
+[ext_resource type="Texture2D" uid="uid://cpo6y3wtlnguy" path="res://models/space_bg_gimp.png" id="2_03n2b"]
+[ext_resource type="Script" uid="uid://bo2sy4xwreqtp" path="res://entities/player/background.gd" id="3_mumpv"]
+[ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="4_sps31"]
+[ext_resource type="Script" uid="uid://corcpgd3gxofb" path="res://entities/player/particles_zoom.gd" id="5_ympcu"]
+[ext_resource type="PackedScene" uid="uid://d10loxwicg8w3" path="res://entities/game_over/invasion_unit.tscn" id="6_d2342"]
+
+[sub_resource type="Curve" id="Curve_662pc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_03n2b"]
+offsets = PackedFloat32Array(0, 0.20704846, 0.42731276, 0.6431718, 0.8017621, 1)
+colors = PackedColorArray(0.07450981, 0.27450982, 0.06666667, 1, 0.24313726, 0.5372549, 0.078431375, 1, 0.23921569, 0.6392157, 0.3647059, 1, 0.5882353, 0.8784314, 0.44705883, 1, 0.9098039, 0.9882353, 0.8117647, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_afbqv"]
+
+[node name="End_Scene" type="Node2D"]
+script = ExtResource("1_03n2b")
+
+[node name="Planet_Earth" parent="." instance=ExtResource("1_662pc")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Planet_Earth"]
+position = Vector2(0, 5)
+amount = 125
+texture = ExtResource("4_sps31")
+lifetime = 2.0
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 444.0
+angle_max = 720.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_662pc")
+color_initial_ramp = SubResource("Gradient_03n2b")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1000
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(2.32, 2.32)
+texture = ExtResource("2_03n2b")
+script = ExtResource("3_mumpv")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 555
+texture = ExtResource("4_sps31")
+lifetime = 2.0
+randomness = 1.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(10000, 10000)
+spread = 0.0
+gravity = Vector2(-980, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_afbqv")
+script = ExtResource("5_ympcu")
+
+[node name="Army" type="Node2D" parent="."]
+scale = Vector2(2.32, 2.32)
+
+[node name="Sprite2D" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-496.55173, -210.77588)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D2" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-580.1724, -207.75864)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D3" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-627.58624, -54.741383)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D4" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-612.931, 65.51724)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D5" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-710.34485, 46.98275)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D6" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-659.9138, 150.86208)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D7" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-601.7241, 226.72415)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D8" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-507.32758, 250.86209)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D9" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-362.49997, -190.08623)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D10" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-334.0517, -281.8966)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D11" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-531.4655, -102.1552)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D12" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-432.7586, 226.72415)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D13" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-334.0517, 237.50002)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D14" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-407.32758, 130.60345)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D15" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-244.82755, -304.74146)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D16" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-279.74133, 301.29312)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D17" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(331.46564, -269.82764)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D18" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(389.65527, -124.137955)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D19" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(468.96564, -266.81036)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D20" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(558.18976, -60.77588)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D21" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(260.77594, 175)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D22" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(199.56903, 279.7414)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D23" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(114.22424, 345.25867)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D24" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(92.672485, 434.4828)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D25" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(362.0691, -363.79315)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D26" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(516.37946, -363.79315)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D27" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(615.5174, -292.6725)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D28" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(635.34503, -181.46556)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D29" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(423.276, 38.36206)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D30" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(451.2932, 178.87932)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D31" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(381.89667, 329.31036)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D32" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(265.0863, 418.53455)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D33" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(656.89667, -403.4483)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D34" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(504.74152, 430.17242)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D35" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(603.4484, 295.6897)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D36" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(351.2932, 469.82764)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D37" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(349.5691, 225.86209)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D38" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(537.9312, 67.24138)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D39" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(673.7071, 116.37931)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D40" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(565.9484, 207.75864)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D41" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(613.36224, 399.56903)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D42" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(667.2415, -40.948288)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D43" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(227.15527, 513.79315)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D44" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(753.87946, -140.94832)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D45" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(443.10358, -469.82764)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D46" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(759.05194, 76.72414)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D47" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(740.9484, 246.98277)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D48" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(313.7932, -435.34485)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D49" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-272.41376, -466.37933)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D50" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-394.82758, -98.27588)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D51" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-450.86206, -281.46558)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D52" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-901.7242, 406.03455)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D53" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-717.2414, 379.7414)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D54" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-582.7586, 416.81036)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D55" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-411.20688, 403.4483)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D56" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-743.5345, 500.86212)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D57" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-509.05173, 490.51727)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D58" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-332.32758, 477.1552)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D59" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-878.0173, 216.37933)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D60" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-914.6552, -87.068985)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D61" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-859.4828, -247.84486)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D62" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-685.34485, -305.60352)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D63" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-590.5172, -413.79315)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D64" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-991.3794, 134.48276)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D65" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-1020.25867, -305.60352)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D66" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-904.3104, -474.56903)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D67" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-730.1724, -511.20697)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D68" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-118.534424, -508.62073)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D69" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(-456.0345, -468.96558)
+_target = NodePath("../../Planet_Earth")
+
+[node name="Sprite2D70" parent="Army" node_paths=PackedStringArray("_target") instance=ExtResource("6_d2342")]
+position = Vector2(246.12079, -188.36206)
+flip_h = true
+_target = NodePath("../../Planet_Earth")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2.32, 2.32)
+zoom = Vector2(0.225, 0.225)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -981.0
+offset_top = 1112.0
+offset_right = 1090.0
+offset_bottom = 1339.0
+theme_override_colors/font_color = Color(0.5882353, 0.8784314, 0.44705883, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.07450981, 0.27450982, 0.06666667, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/outline_size = 35
+theme_override_constants/shadow_outline_size = 100
+theme_override_font_sizes/font_size = 166
+text = "Thank you for playing"
+horizontal_alignment = 1
+uppercase = true
