@@ -1,5 +1,7 @@
 extends Control
 
+const BASE_UI_DISTANCE :float =128.0
+const BASE_REAL_DISTANCE: float = 304362.0
 @export var _player_texture : TextureRect
 #planets
 @export var _neptune_texture : TextureRect
@@ -28,13 +30,24 @@ extends Control
 
 @export var _sun_texture : TextureRect
 @export var _sun_color : Color
-
+#####################################################
 func _ready() -> void:
     update_planet_color()
 
-func update_player_pos() ->void:
-    #get relativ pos translated left -15 to 113
-    pass 
+func _physics_process(_delta: float) -> void:
+    _update_player_pos()
+
+
+#####################################################
+
+func _update_player_pos() ->void:
+    #get relativ pos translated left -15.0 to 113.0  / Distance 128
+    #  player realposition         -4988.0 to 299374.0 / Distance 304362
+    #formel playerpos * 128 /304362
+    if EventManager.player_node != null:
+        var _new_position : float = EventManager.player_node.global_position.x * BASE_UI_DISTANCE / BASE_REAL_DISTANCE
+        _player_texture.position = Vector2(_new_position,  83.0)
+    
 
 
 func update_planet_color() -> void:

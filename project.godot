@@ -132,6 +132,10 @@ zoom_in={
 2d_physics/layer_6="gathering"
 2d_physics/layer_7="enemies"
 
+[physics]
+
+2d/default_gravity_vector=Vector2(1, 0)
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -9,11 +9,25 @@ signal asteroid_mother_setted()
 
 signal scanned_planet_updated()
 
+signal camera_zoom_changed( _zoom : Vector2)
+
+signal collectable_done(_pos : Vector2)
+signal asteroid_done(_pos : Vector2)
 ## Public Variable
 var collectable_mother : Node2D = null
 var asteroids_mother : Node2D = null
 var player_node : Node2D = null
 ##################################################################################### CALL FUNCTIONS #################
+func on_asteroid_done(_pos :Vector2) ->void:
+    asteroid_done.emit(_pos)
+    
+func on_collectable_done(_pos :Vector2) ->void:
+    collectable_done.emit(_pos)
+#new method for background image zooming
+func on_camera_zoom_changed(_zoom :Vector2) ->void:
+    print("Signal Camera Changed")
+    camera_zoom_changed.emit(_zoom)
+
 func on_scanned_planet_updated() ->void:
     scanned_planet_updated.emit()
     

@@ -29,24 +29,28 @@ func get_resource() ->void :
             mining_component.total_resources.set("Minerals", mining_component.total_resources.get("Minerals",0)-1)
             # SIGNAL GET 1 MINERAL
             _spawn_collectable(collectable_mineral)
+            
 
-        if mining_component.total_resources.get("Gas") > 0:
+        elif mining_component.total_resources.get("Gas") > 0:
             mining_component.max_count -= 1
             mining_component.total_resources.set("Gas", mining_component.total_resources.get("Gas",0)-1)
             # SIGNAL GET 1 MINERAL
             _spawn_collectable(collectable_gas)
+            
 
-        if mining_component.total_resources.get("Crystals") > 0:
+        elif mining_component.total_resources.get("Crystals") > 0:
             mining_component.max_count -= 1
             mining_component.total_resources.set("Crystals", mining_component.total_resources.get("Crystals",0)-1)
             # SIGNAL GET 1 MINERAL
             _spawn_collectable(collectable_crystal)
+            
 
-        if mining_component.total_resources.get("Artifact") > 0:
+        elif mining_component.total_resources.get("Artifact") > 0:
             mining_component.max_count -= 1
             mining_component.total_resources.set("Artifact", mining_component.total_resources.get("Artifact",0)-1)
             # SIGNAL GET 1 MINERAL
             _spawn_collectable(collectable_artifact)
+            
 
     _set_scale()
     _check_asteroid_is_dead()
@@ -60,7 +64,9 @@ func _check_asteroid_is_dead() ->void:
         #add mining skill efficiency
         UpgradeManager.perform_upgrade(PersistentData.SKILL_MINING_EFFICIENCY)
 
-        ##Shrink animation particle and sound 
+        ##Shrink animation particle and sound
+        EventManager.on_asteroid_done(_asteroid.global_position)
+         
         AsteroidManager.reset_asteroid(get_parent())
 
 func _spawn_collectable(_scene : PackedScene)->void:

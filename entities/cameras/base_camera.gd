@@ -23,7 +23,8 @@ func _input(event: InputEvent) -> void:
         _current_zoom -= Vector2.ONE * _zoom_step
         if _current_zoom.x <= 0.1:
             _current_zoom = Vector2.ONE *_min_zoom
-            EventManager.on_player_changed_zoom(_current_zoom)
+            #EventManager.on_player_changed_zoom(_current_zoom)
+            EventManager.on_camera_zoom_changed(_current_zoom)
 
         _personal_zoom(_current_zoom)
     if event.is_action_pressed("zoom_in"):
@@ -31,7 +32,8 @@ func _input(event: InputEvent) -> void:
         _current_zoom += Vector2.ONE * _zoom_step
         if _current_zoom.x >= 1:
             _current_zoom = Vector2.ONE *_max_zoom
-            EventManager.on_player_changed_zoom(_current_zoom)
+            #EventManager.on_player_changed_zoom(_current_zoom)
+            EventManager.on_camera_zoom_changed(_current_zoom)
             
         _personal_zoom(_current_zoom)
 
@@ -39,24 +41,26 @@ func _input(event: InputEvent) -> void:
 # function to zoom out if planet is nearby otherwhise zoom in
 func _auto_zoom(_planet_radius :float) ->void:
     _planet_zoom_out(_planet_radius)
+    EventManager.on_camera_zoom_changed(Vector2.ONE * BASE_ZOOM_OUT)
 
 func _auto_zoom_in() ->void:
-    _zoom_in()
+    _planet_zoom_in()
+    EventManager.on_camera_zoom_changed(_current_zoom)
 ##############################################################
 
 func _planet_zoom_out(_radius : float) ->void:
     var target = Vector2.ONE * BASE_ZOOM_OUT
     _tween_to_zoom(target)
-    _current_zoom = target
-
-func _zoom_out() ->void:
-    # increase zoom (zoom out) up to _max_zoom
-    var new_x = min(_max_zoom, _current_zoom.x + _zoom_step)
-    var target = Vector2.ONE * new_x
-    _tween_to_zoom(target)
     #_current_zoom = target
 
-func _zoom_in() ->void: 
+#func _zoom_out() ->void:
+    # increase zoom (zoom out) up to _max_zoom
+#    var new_x = min(_max_zoom, _current_zoom.x + _zoom_step)
+ #   var target = Vector2.ONE * new_x
+ #   _tween_to_zoom(target)
+    #_current_zoom = target
+
+func _planet_zoom_in() ->void: 
     # decrease zoom (zoom in) down to _min_zoom
     #var target = Vector2.ONE
     _tween_to_zoom(_current_zoom)

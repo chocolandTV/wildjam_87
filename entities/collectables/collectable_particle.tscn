@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6j1bqit7g84n"]
+
+[ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="1_0w5av"]
+[ext_resource type="Script" uid="uid://dhh06tja24tam" path="res://entities/collectables/collectable_particle_done.gd" id="2_3nie4"]
+
+[sub_resource type="Curve" id="Curve_afbqv"]
+_data = [Vector2(0.0064308643, 1), 0.0, 0.0, 0, 0, Vector2(0.9839228, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Collectable_Particle" type="CPUParticles2D"]
+emitting = false
+amount = 64
+texture = ExtResource("1_0w5av")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 40.32
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -10)
+orbit_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_afbqv")
+color = Color(0.07450981, 0.27450982, 0.06666667, 1)
+script = ExtResource("2_3nie4")

@@ -517,7 +517,7 @@ custom_minimum_size = Vector2(133, 32)
 layout_mode = 2
 text = "Speed:  99999 AU"
 
-[node name="System_Map" type="Control" parent="."]
+[node name="System_Map" type="Control" parent="." node_paths=PackedStringArray("_player_texture", "_neptune_texture", "_uranus_texture", "_saturn_texture", "_jupiter_texture", "_mars_texture", "_earth_texture", "_venus_texture", "_mercury_texture", "_sun_texture")]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -526,6 +526,25 @@ offset_top = -256.0
 offset_right = 256.0
 grow_vertical = 0
 script = ExtResource("16_22vk4")
+_player_texture = NodePath("MarginContainer/PanelContainer/Panel/Player")
+_neptune_texture = NodePath("MarginContainer/PanelContainer/Panel/Neptune")
+_neptune_color = Color(0.39607844, 0.48235294, 0.64705884, 1)
+_uranus_texture = NodePath("MarginContainer/PanelContainer/Panel/Uranus")
+_uranus_color = Color(0.8156863, 0.9254902, 0.9411765, 1)
+_saturn_texture = NodePath("MarginContainer/PanelContainer/Panel/Saturn")
+_saturn_color = Color(0.9529412, 0.80784315, 0.53333336, 1)
+_jupiter_texture = NodePath("MarginContainer/PanelContainer/Panel/Jupiter")
+_jupiter_color = Color(0.7490196, 0.6862745, 0.60784316, 1)
+_mars_texture = NodePath("MarginContainer/PanelContainer/Panel/Mars")
+_mars_color = Color(0.9490196, 0.48235294, 0.37254903, 1)
+_earth_texture = NodePath("MarginContainer/PanelContainer/Panel/Earth")
+_earth_color = Color(0.25882354, 0.41960785, 0.56078434, 1)
+_venus_texture = NodePath("MarginContainer/PanelContainer/Panel/Venus")
+_venus_color = Color(0.8509804, 0.69803923, 0.57254905, 1)
+_mercury_texture = NodePath("MarginContainer/PanelContainer/Panel/Mercury")
+_mercury_color = Color(0.34901962, 0.34509805, 0.3372549, 1)
+_sun_texture = NodePath("MarginContainer/PanelContainer/Panel/Sun")
+_sun_color = Color(0.9490196, 0.5137255, 0.1254902, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="System_Map"]
 layout_mode = 0

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj4w732eewyav"]
+
+[ext_resource type="Script" uid="uid://bk0cggh28nhrj" path="res://entities/particle_system/particle_mother.gd" id="1_qix8c"]
+[ext_resource type="PackedScene" uid="uid://c6j1bqit7g84n" path="res://entities/collectables/collectable_particle.tscn" id="2_ytrxw"]
+
+[node name="Particle_Mother" type="Node2D"]
+script = ExtResource("1_qix8c")
+collectable_particle_scene = ExtResource("2_ytrxw")
+asteroid_destroy_scene = ExtResource("2_ytrxw")

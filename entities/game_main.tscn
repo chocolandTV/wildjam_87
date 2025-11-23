@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crlnkahcesrh7"]
+[gd_scene load_steps=17 format=3 uid="uid://crlnkahcesrh7"]
 
 [ext_resource type="Script" uid="uid://bxit05hn5wjn4" path="res://entities/game_main.gd" id="1_6oaob"]
 [ext_resource type="PackedScene" uid="uid://dmo7rb7w3ehp1" path="res://entities/player/player.tscn" id="2_fv4eh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://wnf7cyav7375" path="res://entities/collectables/collectable_mother.tscn" id="12_ger8e"]
 [ext_resource type="PackedScene" uid="uid://c8353cbyo1kil" path="res://entities/cameras/base_camera.tscn" id="13_qluqr"]
 [ext_resource type="PackedScene" uid="uid://c7vsoeyud2c1b" path="res://entities/Asteroids/asteroid_mother.tscn" id="13_ts023"]
+[ext_resource type="PackedScene" uid="uid://bj4w732eewyav" path="res://entities/particle_system/particle_mother.tscn" id="14_ts023"]
 
 [node name="game_scene" type="Node2D"]
 modulate = Color(0.40069774, 0.40069774, 0.40069768, 1)
@@ -55,6 +56,11 @@ scale = Vector2(0.95, 0.95)
 position = Vector2(296800, 0)
 scale = Vector2(0.3, 0.3)
 
+[node name="Player" parent="Solar_System" instance=ExtResource("2_fv4eh")]
+position = Vector2(299374, 0)
+
+[node name="Auto_Zoom_Camera" parent="Solar_System/Player" instance=ExtResource("13_qluqr")]
+
 [node name="Sun" parent="Solar_System" instance=ExtResource("11_1hqda")]
 position = Vector2(348221.03, 0)
 scale = Vector2(109, 109)
@@ -63,7 +69,4 @@ scale = Vector2(109, 109)
 
 [node name="Asteroid_mother" parent="Solar_System" instance=ExtResource("13_ts023")]
 
-[node name="Player" parent="." instance=ExtResource("2_fv4eh")]
-position = Vector2(-4988, 0)
-
-[node name="Auto_Zoom_Camera" parent="Player" instance=ExtResource("13_qluqr")]
+[node name="Particle_Mother" parent="Solar_System" instance=ExtResource("14_ts023")]
