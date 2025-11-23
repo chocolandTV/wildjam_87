@@ -2,12 +2,12 @@ extends Camera2D
 class_name Base_Game_Camera
 
 #Const Variable
-const BASE_ZOOM_OUT_FACTOR : float = 28.8888
+const BASE_ZOOM_OUT : float = 0.135
 
 # private variable 
 var _min_zoom : float = 0.1
 var _max_zoom : float = 1.0
-var _zoom_step: float = 0.1
+var _zoom_step: float = 0.2
 var _current_zoom : Vector2 = Vector2.ONE
 var _zoom_duration : float = 0.55
 
@@ -45,7 +45,7 @@ func _auto_zoom_in() ->void:
 ##############################################################
 
 func _planet_zoom_out(_radius : float) ->void:
-    var target = Vector2.ONE * (_radius / BASE_ZOOM_OUT_FACTOR)
+    var target = Vector2.ONE * BASE_ZOOM_OUT
     _tween_to_zoom(target)
     _current_zoom = target
 
@@ -54,13 +54,13 @@ func _zoom_out() ->void:
     var new_x = min(_max_zoom, _current_zoom.x + _zoom_step)
     var target = Vector2.ONE * new_x
     _tween_to_zoom(target)
-    _current_zoom = target
+    #_current_zoom = target
 
 func _zoom_in() ->void: 
     # decrease zoom (zoom in) down to _min_zoom
-    var target = Vector2.ONE
-    _tween_to_zoom(target)
-    _current_zoom = target
+    #var target = Vector2.ONE
+    _tween_to_zoom(_current_zoom)
+    #_current_zoom = target
 
 func _tween_to_zoom(target : Vector2) -> void:
     # create a SceneTreeTween and animate the camera's zoom with exponential transition

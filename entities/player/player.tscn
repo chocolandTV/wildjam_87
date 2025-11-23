@@ -38,6 +38,7 @@ script = ExtResource("5_a1qjk")
 _point_light = NodePath("../PointLight2D")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 2
 texture = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -71,7 +71,7 @@ func _spawn_collectable(_scene : PackedScene)->void:
     _new_instance.global_position = _asteroid.global_position
     # attach to mother
     EventManager.collectable_mother.add_child(_new_instance)
-    _new_instance.add_force(_get_random_force())
+    #_new_instance.add_force(_get_random_force())
     # give random force
 
 func _get_random_force()->Vector2:
