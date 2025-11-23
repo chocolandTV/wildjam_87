@@ -24,6 +24,7 @@ func _input(event: InputEvent) -> void:
         if _current_zoom.x <= 0.1:
             _current_zoom = Vector2.ONE *_min_zoom
             #EventManager.on_player_changed_zoom(_current_zoom)
+        else:
             EventManager.on_camera_zoom_changed(_current_zoom)
 
         _personal_zoom(_current_zoom)
@@ -32,6 +33,7 @@ func _input(event: InputEvent) -> void:
         _current_zoom += Vector2.ONE * _zoom_step
         if _current_zoom.x >= 1:
             _current_zoom = Vector2.ONE *_max_zoom
+        else:
             #EventManager.on_player_changed_zoom(_current_zoom)
             EventManager.on_camera_zoom_changed(_current_zoom)
             

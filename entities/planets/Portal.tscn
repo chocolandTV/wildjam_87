@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr5u7rnpxkna"]
+[gd_scene load_steps=4 format=3 uid="uid://dr5u7rnpxkna"]
 
 [ext_resource type="Texture2D" uid="uid://c3g50gbh4aq3i" path="res://models/ui_helper.png" id="1_e6a5f"]
+[ext_resource type="Texture2D" uid="uid://c2urhn5gedi5k" path="res://models/planet_light.png" id="2_itrdy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itrdy"]
 
@@ -11,3 +12,7 @@ shape = SubResource("CircleShape2D_itrdy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_e6a5f")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("2_itrdy")

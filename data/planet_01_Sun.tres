@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_e1ket")
-canvas_name = "Start F-955135"
+canvas_name = "Star F-955135"
 canvas_description = "This Sun looks really Powerful"
 canvas_mass = "1,988 4 · 1030 ± 2 · 1026) kg"
 canvas_gravity = "1,327 · 1020 m³/s²"

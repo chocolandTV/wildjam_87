@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_kcrcm")
-canvas_name = "M- OE01"
+canvas_name = "M-OE01"
 canvas_description = "OE01 is the first planet from the Sun and the smallest in this Solar System"
 canvas_mass = "3.3011×1023 kg"
 canvas_gravity = "3.7 m/s2"

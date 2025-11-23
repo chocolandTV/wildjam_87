@@ -22,13 +22,15 @@ func _ready() -> void:
 
 # Input Method Hold to mine
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		_on_button_pressed()
-	elif event.is_action_released("interact"):
+	#if Input.is_action_just_pressed("interact"):
+	#	_on_button_pressed()
+	if Input.is_action_just_released("interact"):
 		_on_button_released()
-
-func _physics_process(delta: float) -> void:
-	_check_mining(delta)
+	if event.is_action_pressed("interact"):
+		_is_button_pressed = true
+		_check_mining()
+#func _physics_process(delta: float) -> void:
+#	_check_mining(delta)
 
 ##################################### AREA DETECTION #####################################
 func _on_area_entered(area: Area2D) -> void:
@@ -56,11 +58,9 @@ func _on_button_released() -> void:
 	_cursor.hide()
 	# stop mining logic here
 
-func _check_mining(_delta : float) -> void:
+func _check_mining() -> void:
 	if _is_button_pressed and _mining_target != null:
 		_cursor.global_position = (_mining_target.get_parent()as Node2D).global_position
-		_temp_timer += _delta
-		var _timeout :float = max(0.1,BASE_MINING_TIME - (PersistentData.player_progress.get("upgrade_mining_efficiency")* 0.1))
-		if _temp_timer >= _timeout:
-			_temp_timer= 0
-			_mining_target.get_resource()
+
+		_mining_target.get_resource()
+		

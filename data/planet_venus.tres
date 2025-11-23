@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_mj8om")
-canvas_name = "M- OE02"
+canvas_name = "M-OE02"
 canvas_description = "This Planet looks bad, especially as it has no liquid water, and its atmosphere is far thicker and denser than our Homeplanet."
 canvas_mass = "4.8675×10^24 kg"
 canvas_gravity = "8.87 m/s2"

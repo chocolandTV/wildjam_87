@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br1v2drbsddqy" path="res://entities/Asteroids/asteroid_area.gd" id="1_uxd5k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwjsg"]
-radius = 137.48091
+radius = 205.41179
 
 [node name="Mining_Area2D" type="Area2D"]
 collision_layer = 16

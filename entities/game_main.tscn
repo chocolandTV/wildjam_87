@@ -34,39 +34,42 @@ position = Vector2(108700, 0)
 scale = Vector2(4, 4)
 
 [node name="Planet_Saturn" parent="Solar_System" instance=ExtResource("5_qluqr")]
-position = Vector2(204900, 0)
+position = Vector2(181860, 0)
 scale = Vector2(9.5, 9.5)
 
 [node name="Planet_Jupiter" parent="Solar_System" instance=ExtResource("6_78sbi")]
-position = Vector2(248700, 0)
+position = Vector2(225020, 127.99999)
 scale = Vector2(11, 11)
 
 [node name="Planet_Mars" parent="Solar_System" instance=ExtResource("7_ger8e")]
-position = Vector2(285500, 0)
-scale = Vector2(0.53, 0.53)
+position = Vector2(258891, 0)
+scale = Vector2(3.9, 3.9)
+planet_radius = 3.9
 
 [node name="Planet_Earth" parent="Solar_System" instance=ExtResource("8_ts023")]
 position = Vector2(290700, 0)
+scale = Vector2(8, 8)
 
 [node name="Planet_Venus" parent="Solar_System" instance=ExtResource("9_dptmg")]
-position = Vector2(293500, 0)
-scale = Vector2(0.95, 0.95)
+position = Vector2(312283, 0)
+scale = Vector2(3.9, 3.9)
 
 [node name="Planet_Mercury" parent="Solar_System" instance=ExtResource("10_353k7")]
-position = Vector2(296800, 0)
-scale = Vector2(0.3, 0.3)
-
-[node name="Player" parent="Solar_System" instance=ExtResource("2_fv4eh")]
-position = Vector2(299374, 0)
-
-[node name="Auto_Zoom_Camera" parent="Solar_System/Player" instance=ExtResource("13_qluqr")]
+position = Vector2(329243, 0)
+scale = Vector2(3.9, 3.9)
 
 [node name="Sun" parent="Solar_System" instance=ExtResource("11_1hqda")]
 position = Vector2(348221.03, 0)
-scale = Vector2(109, 109)
+scale = Vector2(20, 20)
+planet_radius = 20.0
 
 [node name="Collectable_Mother" parent="Solar_System" instance=ExtResource("12_ger8e")]
 
 [node name="Asteroid_mother" parent="Solar_System" instance=ExtResource("13_ts023")]
 
 [node name="Particle_Mother" parent="Solar_System" instance=ExtResource("14_ts023")]
+
+[node name="Player" parent="Solar_System" instance=ExtResource("2_fv4eh")]
+position = Vector2(-4935, 0)
+
+[node name="Auto_Zoom_Camera" parent="Solar_System/Player" instance=ExtResource("13_qluqr")]

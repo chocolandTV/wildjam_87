@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_tc0xm")
-canvas_name = "M- OE03"
+canvas_name = "M-OE03"
 canvas_description = "This Planet looks perfect, it has oceans, continental landmasses and atmosphere, lets land!!!"
 canvas_mass = "5.972168×10^24 kg"
 canvas_gravity = "9.80665 m/s2"

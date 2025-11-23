@@ -27,7 +27,38 @@ func _on_scan_finished() -> void:
     print("on scan complete")
     if skill_level >= 7:
         # SET PLANET TO SCANNED
-        PersistentData.scanned_planets.set(planet_name,1)
+        match planet_name:
+
+            "Star F-955135":
+                PersistentData.scanned_planets.set("Sun",1)
+
+            "M-OE03":
+                PersistentData.scanned_planets.set("Earth",1)
+
+            "M-OE05":
+                PersistentData.scanned_planets.set("Jupiter",1)
+
+            "M-OE04":
+                PersistentData.scanned_planets.set("Mars",1)
+
+            "M-OE01":
+                PersistentData.scanned_planets.set("Mercury",1)
+
+            "M-OE08":
+                PersistentData.scanned_planets.set("Neptune",1)
+
+            "M-OE06":
+                PersistentData.scanned_planets.set("Saturn",1)
+
+            "M-OE07":
+                PersistentData.scanned_planets.set("Uranus",1)
+            
+            "M-OE02":
+                PersistentData.scanned_planets.set("Venus",1)
+            
+            _:
+                print("Match Error : no planet_name matched")
+        EventManager.on_scanned_planet_updated()
     # done
     #show panel container
     _panel_container_info.show()
@@ -35,3 +66,6 @@ func _on_scan_finished() -> void:
     # emit signal or call other logic if needed
     ##add upgrade
     UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY)
+    #### WIN CONDITION 
+    if planet_name == "M- OE03":
+        print("Game Win")

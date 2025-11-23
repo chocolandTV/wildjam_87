@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ipuv4")
-canvas_name = "M- OE05"
+canvas_name = "M-OE05"
 canvas_description = "This Planet is a gas giant with a mass nearly 2.5 times that of all the other planets."
 canvas_mass = "1.8982×10^27 kg"
 canvas_gravity = "24.79 m/s2"

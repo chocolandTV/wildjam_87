@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=18 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cpuqg66mak16m" path="res://entities/player/player_visuals.gd" id="5_a1qjk"]
 [ext_resource type="Resource" uid="uid://berlgt8vrnb7a" path="res://data/skill_scan_efficiency.tres" id="5_fkugw"]
 [ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_mining_efficiency.tres" id="6_26q78"]
+[ext_resource type="Texture2D" uid="uid://c2urhn5gedi5k" path="res://models/planet_light.png" id="6_gx6sm"]
 [ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
 [ext_resource type="Resource" uid="uid://c7apfgbi6ab8g" path="res://data/skill_upgrade_speed.tres" id="8_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://dgdcwqnuqa5cs" path="res://entities/player/mining_arm.tscn" id="9_bectd"]
@@ -42,6 +43,23 @@ _point_light = NodePath("../PointLight2D")
 z_index = 2
 texture = ExtResource("1_symyc")
 
+[node name="Mining_Arm" parent="PointLight2D" instance=ExtResource("9_bectd")]
+z_index = 1
+position = Vector2(52, 146)
+
+[node name="Mining_Arm2" parent="PointLight2D" instance=ExtResource("9_bectd")]
+z_index = 1
+position = Vector2(14, 160)
+
+[node name="Mining_Arm3" parent="PointLight2D" instance=ExtResource("9_bectd")]
+z_index = 1
+position = Vector2(-29, 153)
+
+[node name="Light_Bulp" type="PointLight2D" parent="PointLight2D"]
+position = Vector2(656, 47)
+color = Color(0.5882353, 0.8784314, 0.44705883, 1)
+texture = ExtResource("6_gx6sm")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_abrql")
 
@@ -63,18 +81,6 @@ upgrade_skill = ExtResource("8_wvtmh")
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
-
-[node name="Mining_Arm" parent="." instance=ExtResource("9_bectd")]
-z_index = 1
-position = Vector2(52, 146)
-
-[node name="Mining_Arm2" parent="." instance=ExtResource("9_bectd")]
-z_index = 1
-position = Vector2(14, 160)
-
-[node name="Mining_Arm3" parent="." instance=ExtResource("9_bectd")]
-z_index = 1
-position = Vector2(-29, 153)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 555

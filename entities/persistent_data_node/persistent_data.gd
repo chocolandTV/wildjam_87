@@ -48,12 +48,12 @@ var player_progress : Dictionary = {
 ################################## Functions ##################################
 func _ready() -> void:
     ### DEBUG 
-    reset_game_data()
+    #reset_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
     _timer.start()
     #Load existing game data if available
-    load_game_data()
+    #load_game_data()
 
 func _on_timer_timeout() -> void:
     save_game_data()

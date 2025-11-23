@@ -60,6 +60,9 @@ func _physics_process(_delta: float) -> void:
 		_session_traveled -= 10000
 		UpgradeManager.perform_upgrade(PersistentData.SKILL_SPEED)
 
+func get_speed_au() -> float:
+	return velocity.length()/ 1000
+
 ################################# PRIVATE METHODS #################################
 func _process_input() -> void:
 	# Get the input vector from player controls

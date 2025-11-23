@@ -321,7 +321,7 @@ layout_mode = 2
 
 [node name="mining_header" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "HOLD E"
+text = "PRESS E"
 horizontal_alignment = 1
 
 [node name="mining" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
@@ -332,17 +332,28 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="Input_Manager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("4_pylni")
 
-[node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label")]
+[node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label", "_evolution_label", "_age_label", "_mineral_value_label", "_gas_value_label", "_crystal_value_label", "_artifact_value_label", "_mining_arms_label", "_speed_value_label")]
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 script = ExtResource("7_2uxy6")
 _lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2/Life_time_value")
+_evolution_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution/Evolution_value")
+_age_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2/Life_time_value")
+_mineral_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals/minerals_value")
+_gas_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals/gas_value")
+_crystal_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals/crystals_value")
+_artifact_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals/artifacts_value")
+_mining_arms_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer/Label")
+_speed_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer/Label")
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud"]
+custom_minimum_size = Vector2(1100, 52)
 layout_mode = 0
 offset_right = 1139.0
 offset_bottom = 52.0
@@ -677,12 +688,13 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="Player" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+process_mode = 3
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_left = -15.0
-offset_top = 83.0
-offset_right = 241.0
-offset_bottom = 338.99982
+offset_left = -20.0
+offset_top = 111.0
+offset_right = 236.0
+offset_bottom = 366.99976
 texture = ExtResource("8_hgyfx")
 expand_mode = 1
 stretch_mode = 2

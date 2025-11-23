@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_3ocej")
-canvas_name = "M- OE08"
+canvas_name = "M-OE08"
 canvas_description = "This Planet is a gas giant, composed primarily of gases and liquids"
 canvas_mass = "1.02409×10^26"
 canvas_gravity = "11.27 m/s2"

@@ -2,6 +2,8 @@ extends Control
 
 const BASE_UI_DISTANCE :float =128.0
 const BASE_REAL_DISTANCE: float = 304362.0
+const BASE_PLAYER_UI_START_POS : Vector2 = Vector2(-20.0,111.0)
+
 @export var _player_texture : TextureRect
 #planets
 @export var _neptune_texture : TextureRect
@@ -33,8 +35,9 @@ const BASE_REAL_DISTANCE: float = 304362.0
 #####################################################
 func _ready() -> void:
     update_planet_color()
+    EventManager.scanned_planet_updated.connect(_on_planet_scanned_with_high_scan)
 
-func _physics_process(_delta: float) -> void:
+func _on_planet_scanned_with_high_scan() -> void:
     _update_player_pos()
 
 
@@ -45,8 +48,9 @@ func _update_player_pos() ->void:
     #  player realposition         -4988.0 to 299374.0 / Distance 304362
     #formel playerpos * 128 /304362
     if EventManager.player_node != null:
-        var _new_position : float = EventManager.player_node.global_position.x * BASE_UI_DISTANCE / BASE_REAL_DISTANCE
-        _player_texture.position = Vector2(_new_position,  83.0)
+        var _new_position : Vector2 = EventManager.player_node.global_position * BASE_UI_DISTANCE / BASE_REAL_DISTANCE
+
+        _player_texture.position = _new_position + BASE_PLAYER_UI_START_POS
     
 
 

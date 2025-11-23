@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_naot7")
-canvas_name = "M- OE06"
+canvas_name = "M-OE06"
 canvas_description = "This Planet is a gas giant,it's interior is thought to be composed of a rocky core, surrounded by a deep layer of metallic hydrogen"
 canvas_mass = "5.6834×10^26"
 canvas_gravity = "10.44 m/s2"
