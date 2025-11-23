@@ -54,13 +54,12 @@ mining_component = NodePath("../Mining_Component")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
 texture = ExtResource("9_4l2sp")
-lifetime = 8.0
+lifetime = 2.0
 direction = Vector2(-1, 0)
 spread = 5.0
 gravity = Vector2(-1, 0)
 angular_velocity_max = 1.0
-scale_amount_min = 5.0
-scale_amount_max = 8.0
+scale_amount_min = 0.1
 scale_amount_curve = SubResource("Curve_16r6w")
 color_ramp = SubResource("Gradient_1gjvh")
 

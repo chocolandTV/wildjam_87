@@ -1,13 +1,13 @@
-[gd_scene load_steps=35 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=37 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
-[ext_resource type="Script" uid="uid://clnk0ny17n861" path="res://ui/Interactive_info/canvas_info.gd" id="2_xh48a"]
 [ext_resource type="Script" uid="uid://cyeclsbos0jjr" path="res://ui/progression_bar.gd" id="3_3vkek"]
 [ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
 [ext_resource type="Script" uid="uid://dkulwp55dtdxt" path="res://ui/interactive_box_progress_bar.gd" id="4_iqfqv"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 [ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
+[ext_resource type="Script" uid="uid://dmbmbx8ld5fax" path="res://ui/evolution_control.gd" id="7_ipw3f"]
 [ext_resource type="Texture2D" uid="uid://drhgtrwxhdqlk" path="res://models/icon_evolution.png" id="8_85ca7"]
 [ext_resource type="Texture2D" uid="uid://4wpx883tymr1" path="res://models/icon_test.png" id="8_hgyfx"]
 [ext_resource type="Texture2D" uid="uid://3kdxph7e6lq" path="res://models/icon_minerals.png" id="9_vtgmo"]
@@ -28,24 +28,75 @@
 [ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="26_ipw3f"]
 [ext_resource type="Texture2D" uid="uid://c3g50gbh4aq3i" path="res://models/ui_helper.png" id="27_ipw3f"]
 
-[sub_resource type="Resource" id="Resource_2uxy6"]
-script = ExtResource("2_xh48a")
-canvas_name = "test"
-canvas_description = "we need more skills"
-canvas_mass = "undefined"
-canvas_gravity = "undefined"
-canvas_atmosphere = "undefined"
-canvas_habitablity = "over 60%"
-canvas_distance_sun = "over 100 .000 km"
-canvas_orbital_period = "undefined"
-canvas_temperature = "undefined"
-metadata/_custom_type_script = "uid://clnk0ny17n861"
+[sub_resource type="Animation" id="Animation_br14n"]
+resource_name = "show"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2.3333333, 2.5, 3),
+"transitions": PackedFloat32Array(1, 3.3635864, 3.3635864, 3.4822025, 3.3635848),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c2itc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cq5fk"]
+_data = {
+&"RESET": SubResource("Animation_c2itc"),
+&"show": SubResource("Animation_br14n")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7kcv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqfqv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsnwv"]
+
+[sub_resource type="Animation" id="Animation_mq1hb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ipw3f"]
 resource_name = "spinning"
@@ -75,33 +126,6 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(5, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_mq1hb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_br14n"]
 _data = {
 &"RESET": SubResource("Animation_mq1hb"),
@@ -114,7 +138,6 @@ interactive_box = NodePath("Interactive_Box")
 info_panel_interact = NodePath("Info_Panel_Interact")
 input_manager = NodePath("Input_Manager")
 progression_bar = NodePath("Progression_Bar")
-_test_canvas_info = SubResource("Resource_2uxy6")
 _transition_effect_control = NodePath("Cycle_Transition")
 _transition_animation = NodePath("Cycle_Transition/AnimationPlayer")
 
@@ -399,6 +422,158 @@ uppercase = true
 process_mode = 3
 script = ExtResource("4_pylni")
 
+[node name="Evolution_Control" type="Control" parent="." node_paths=PackedStringArray("speed_value_label", "life_value_label", "boost_value_label", "scanning_value_label", "mining_value_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_ipw3f")
+speed_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2/Evolution_Speed_value")
+life_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3/Evolution_life_value")
+boost_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4/Evolution_boost_value")
+scanning_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5/Evolution_scanning_value")
+mining_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6/Evolution_mining_value")
+
+[node name="MarginContainer" type="MarginContainer" parent="Evolution_Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1, 1e-05)
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 65
+
+[node name="Hud_Panel_Evolution2" type="PanelContainer" parent="Evolution_Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Evolution_Vbox" type="VBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2"]
+layout_mode = 2
+
+[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_label" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+layout_mode = 2
+text = "Evolution"
+
+[node name="Evolution_increase" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+text = " Increased"
+horizontal_alignment = 2
+
+[node name="Hud_Item_01_Evolution2" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_Speed" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "SPEED: "
+
+[node name="Evolution_Speed_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = " + 500%"
+horizontal_alignment = 2
+
+[node name="Hud_Item_01_Evolution3" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_life" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "LIFE"
+
+[node name="Evolution_life_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "+ 50%"
+horizontal_alignment = 2
+
+[node name="Hud_Item_01_Evolution4" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_boost" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "BOOST"
+
+[node name="Evolution_boost_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "+ 25%"
+horizontal_alignment = 2
+
+[node name="Hud_Item_01_Evolution5" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_scanning" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "SCANNING"
+
+[node name="Evolution_scanning_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "+ 35% "
+horizontal_alignment = 2
+
+[node name="Hud_Item_01_Evolution6" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_85ca7")
+expand_mode = 1
+
+[node name="Evolution_mining" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "MINING"
+
+[node name="Evolution_mining_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+text = "+ 1000%"
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Evolution_Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_cq5fk")
+}
+
 [node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label", "_evolution_label", "_mineral_value_label", "_gas_value_label", "_crystal_value_label", "_artifact_value_label", "_mining_arms_label", "_speed_value_label")]
 custom_minimum_size = Vector2(1152, 0)
 layout_mode = 3
@@ -434,13 +609,12 @@ theme_override_constants/margin_bottom = 5
 [node name="Main_H_Box" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(1129, 42)
 layout_mode = 2
+alignment = 1
 
 [node name="Hud_Panel_Evolution" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
-custom_minimum_size = Vector2(200, 42)
 layout_mode = 2
 
 [node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution"]
-custom_minimum_size = Vector2(205, 42)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
@@ -459,7 +633,6 @@ layout_mode = 2
 text = "333"
 
 [node name="Hud_Panel_Lifetime" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
-custom_minimum_size = Vector2(230, 42)
 layout_mode = 2
 
 [node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime"]
@@ -476,7 +649,7 @@ layout_mode = 2
 text = "Age: "
 
 [node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
-custom_minimum_size = Vector2(92, 0)
+custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
 text = "55555"
 
@@ -486,7 +659,6 @@ theme_override_constants/separation = 69
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
 
 [node name="Resource_Holder" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
-custom_minimum_size = Vector2(320, 42)
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -554,7 +726,6 @@ theme_override_constants/separation = 44
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
 
 [node name="Hud_Panel_Mining_arms" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
-custom_minimum_size = Vector2(60, 42)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms"]
@@ -575,7 +746,6 @@ layout_mode = 2
 text = "x 3"
 
 [node name="Hud_Panel_Time_Played" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
-custom_minimum_size = Vector2(169, 42)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played"]

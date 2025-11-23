@@ -37,7 +37,7 @@ func get_current_lifetime_in_percent() -> float:
 func next_cycle() -> void:
     current_cycle += 1
     # Update Current Evolution
-    PersistentData.player_progress["current_evolution"] = current_cycle
+    PersistentData.player_progress.set("current_evolution",current_cycle)
 
     print("CycleManager: Advancing to next cycle.Now on cycle %d" % current_cycle)
     var _temp_stored_upgrades : Dictionary = cycle_stored_upgrades.duplicate()

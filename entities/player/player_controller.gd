@@ -93,7 +93,7 @@ func _dash() -> void:
 	if _can_dash:
 		_can_dash = false
 
-		var dash_speed : float = DASH_SPEED + ((PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)*5))
+		var dash_speed : float = DASH_SPEED + ((PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)*500))
 		var _temp_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = _temp_input.normalized() * dash_speed
 		_dash_timer.start()

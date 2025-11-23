@@ -166,8 +166,8 @@ func reset_asteroid(ast: RigidBody2D) -> void:
     if not ast:
         return
     # stop tweens on asteroid
-    if ast.get_tree_tween():
-        ast.get_tree_tween().kill()
+    #if ast.get_tree_tween():
+    #    ast.get_tree_tween().kill()
     # stop physics and hide
     if "linear_velocity" in ast:
         ast.linear_velocity = Vector2.ZERO

@@ -1,6 +1,6 @@
 extends Node
 #Constant
-const PLAYER_BASE_LIFETIME : float = 60.0
+const PLAYER_BASE_LIFETIME : float = 20.0
 
 const SKILL_LIFETIME : String = "upgrade_lifetime"
 const SKILL_SPEED : String = "upgrade_speed"
@@ -53,7 +53,7 @@ func _ready() -> void:
     _timer.timeout.connect(_on_timer_timeout)
     _timer.start()
     #Load existing game data if available
-    #load_game_data()
+    load_game_data()
 
 func _on_timer_timeout() -> void:
     save_game_data()

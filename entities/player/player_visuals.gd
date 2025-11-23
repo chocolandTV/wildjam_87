@@ -44,9 +44,9 @@ func _handle_life() ->void:
 
     if _current_life > 0.5:
         _new_state = LIFE_STATE.FULL
-    elif _current_life > 0.1:
+    elif _current_life > 0.25:
         _new_state = LIFE_STATE.HALF
-    elif _current_life > 0.02:
+    elif _current_life > 0.1:
         _new_state = LIFE_STATE.BEFORE
     else:
         _new_state = LIFE_STATE.DEAD
