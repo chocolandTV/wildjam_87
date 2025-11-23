@@ -1,9 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr5u7rnpxkna"]
+[gd_scene load_steps=7 format=3 uid="uid://dr5u7rnpxkna"]
 
-[ext_resource type="Texture2D" uid="uid://c3g50gbh4aq3i" path="res://models/ui_helper.png" id="1_e6a5f"]
-[ext_resource type="Texture2D" uid="uid://c2urhn5gedi5k" path="res://models/planet_light.png" id="2_itrdy"]
+[ext_resource type="Texture2D" uid="uid://djif277u2b4hc" path="res://models/scrap_01.png" id="1_e6a5f"]
+[ext_resource type="Texture2D" uid="uid://c3g50gbh4aq3i" path="res://models/ui_helper.png" id="2_itrdy"]
+[ext_resource type="Texture2D" uid="uid://bxf87tbaap6mb" path="res://models/cursor.png" id="3_a5yty"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itrdy"]
+
+[sub_resource type="Curve" id="Curve_5sfdg"]
+_data = [Vector2(0, 0.0869565), 0.0, 0.0, 0, 0, Vector2(0.9881422, 0.97826076), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7065i"]
 
 [node name="Portal" type="StaticBody2D"]
 
@@ -14,5 +21,39 @@ shape = SubResource("CircleShape2D_itrdy")
 texture = ExtResource("1_e6a5f")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.29, 0.29)
+texture = ExtResource("1_e6a5f")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -5.0
+offset_right = 101.0
+offset_bottom = 25.0
+rotation = 0.09599311
+theme_override_colors/font_color = Color(0.9098039, 0.9882353, 0.8117647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.07450981, 0.27450982, 0.06666667, 1)
+theme_override_constants/line_spacing = 4
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 18
+theme_override_font_sizes/font_size = 16
+text = "Respawn-Gate"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(-35.73842, 4.445843)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("2_itrdy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+amount = 25
+texture = ExtResource("3_a5yty")
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 104.7
+spread = 180.0
+gravity = Vector2(0, 0)
+damping_max = 2.19
+scale_amount_curve = SubResource("Curve_5sfdg")
+color = Color(0.07450981, 0.27450982, 0.06666667, 1)
+color_ramp = SubResource("Gradient_7065i")

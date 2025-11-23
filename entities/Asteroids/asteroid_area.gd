@@ -19,50 +19,43 @@ func _ready() -> void:
     _start_count = mining_component.max_count
 
 func get_resource() ->void :
-    print("Start getting resource")
-    UpgradeManager.perform_upgrade(PersistentData.SKILL_MINING_EFFICIENCY)
-    ### NEW DROP UNIT
-    if mining_component.max_count >0:
-        # check if minerals are there
-        if mining_component.total_resources.get("Minerals") > 0:
-            mining_component.max_count -= 1
-            mining_component.total_resources.set("Minerals", mining_component.total_resources.get("Minerals",0)-1)
-            # SIGNAL GET 1 MINERAL
-            _spawn_collectable(collectable_mineral)
-            
+    # Sammle verfügbare Ressourcen
+    var available := []
+    if mining_component.total_resources.get("Minerals", 0) > 0:
+        available.append({"resource": "Minerals", "scene": collectable_mineral})
+    if mining_component.total_resources.get("Gas", 0) > 0:
+        available.append({"resource": "Gas", "scene": collectable_gas})
+    if mining_component.total_resources.get("Crystals", 0) > 0:
+        available.append({"resource": "Crystals", "scene": collectable_crystal})
+    if mining_component.total_resources.get("Artifact", 0) > 0:
+        available.append({"resource": "Artifact", "scene": collectable_artifact})
 
-        elif mining_component.total_resources.get("Gas") > 0:
-            mining_component.max_count -= 1
-            mining_component.total_resources.set("Gas", mining_component.total_resources.get("Gas",0)-1)
-            # SIGNAL GET 1 MINERAL
-            _spawn_collectable(collectable_gas)
-            
+    # Wenn etwas verfügbar ist, wähle zufällig eines aus und spawn es
+    if available.size() > 0 and mining_component.max_count > 0:
+        var rng := RandomNumberGenerator.new()
+        rng.randomize()
+        var idx := rng.randi_range(0, available.size() - 1)
+        var choice :Dictionary= available[idx]
+        var res_key = choice["resource"]
+        var res_scene = choice["scene"]
 
-        elif mining_component.total_resources.get("Crystals") > 0:
-            mining_component.max_count -= 1
-            mining_component.total_resources.set("Crystals", mining_component.total_resources.get("Crystals",0)-1)
-            # SIGNAL GET 1 MINERAL
-            _spawn_collectable(collectable_crystal)
-            
+        mining_component.max_count -= 1
+        #minus
+        var cur = mining_component.total_resources.get(res_key, 0)
+        mining_component.total_resources.set(res_key, max(0, cur - 1))
 
-        elif mining_component.total_resources.get("Artifact") > 0:
-            mining_component.max_count -= 1
-            mining_component.total_resources.set("Artifact", mining_component.total_resources.get("Artifact",0)-1)
-            # SIGNAL GET 1 MINERAL
-            _spawn_collectable(collectable_artifact)
-            
+        _spawn_collectable(res_scene)
+    else:
+        print("No resources available to extract or max_count reached.")
 
     _set_scale()
     _check_asteroid_is_dead()
 
 func _set_scale() ->void:
-    _asteroid.scale = _start_scale * (float(mining_component.max_count) / _start_count)
+    _asteroid.scale *= 0.9
 
 func _check_asteroid_is_dead() ->void:
     if mining_component.max_count <= 0:
-
-        #add mining skill efficiency
-        UpgradeManager.perform_upgrade(PersistentData.SKILL_MINING_EFFICIENCY)
 
         ##Shrink animation particle and sound
         EventManager.on_asteroid_done(_asteroid.global_position)

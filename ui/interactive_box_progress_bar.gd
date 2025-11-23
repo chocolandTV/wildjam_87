@@ -67,5 +67,5 @@ func _on_scan_finished() -> void:
     ##add upgrade
     UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY)
     #### WIN CONDITION 
-    if planet_name == "M- OE03":
+    if planet_name == "M-OE03":
         print("Game Win")

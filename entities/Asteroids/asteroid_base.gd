@@ -4,7 +4,6 @@ class_name Asteroid_Base
 @export var mining_component : Mining_Resources_Component
 @export var timer : Timer
 
-
 func _ready() -> void:
     timer.timeout.connect(_on_timer_timeout_reset)
 

@@ -7,6 +7,9 @@ extends CanvasLayer
 @export var input_manager : Input_Manager
 @export var progression_bar : Control
 @export var _test_canvas_info : Canvas_Info
+@export var _transition_effect_control: Control
+@export var _transition_animation : AnimationPlayer
+
 # private variables
 var _is_interacting :bool = false
 var _is_game_paused :bool = false
@@ -18,6 +21,8 @@ func _ready() -> void:
 	input_manager.interact_pressed.connect(_start_progress_bar_interaction)
 	input_manager.pause_pressed.connect(_on_game_paused)
 	input_manager.menu_pressed.connect(_on_game_menu_toggled)
+	CycleManager.cycle_done.connect(_on_cycle_changed)
+	_transition_animation.animation_finished.connect(_on_animation_player_finished_cycle_change)
 
 func setup_asteroid_mining_box(_value : bool) ->void:
 	info_panel_interact.visible = _value
@@ -64,6 +69,11 @@ func progress_completed() -> void:
 		PersistentData.scanned_planets[_current_target_area.planet_name] = 1
 
 ################ PRIVATE METHODS ################
+func _on_animation_player_finished_cycle_change(_name :String)->void:
+	_transition_effect_control.hide()
+func _on_cycle_changed() ->void:
+	_transition_effect_control.show()
+	_transition_animation.play("spinning")
 
 func _start_progress_bar_interaction() -> void:
 	info_panel_interact.hide()

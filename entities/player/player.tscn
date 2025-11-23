@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmo7rb7w3ehp1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmo7rb7w3ehp1"]
 
 [ext_resource type="Script" uid="uid://qkwqy53rndbu" path="res://entities/player/player_controller.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://bt4p6n7g6hgph" path="res://models/player.png" id="1_symyc"]
@@ -8,8 +8,11 @@
 [ext_resource type="Script" uid="uid://cpuqg66mak16m" path="res://entities/player/player_visuals.gd" id="5_a1qjk"]
 [ext_resource type="Resource" uid="uid://berlgt8vrnb7a" path="res://data/skill_scan_efficiency.tres" id="5_fkugw"]
 [ext_resource type="Resource" uid="uid://6gg1qo5qxlv8" path="res://data/skill_mining_efficiency.tres" id="6_26q78"]
+[ext_resource type="Texture2D" uid="uid://df5yuii1v33jd" path="res://models/player_life_half2.png" id="6_b2kln"]
 [ext_resource type="Texture2D" uid="uid://c2urhn5gedi5k" path="res://models/planet_light.png" id="6_gx6sm"]
 [ext_resource type="Resource" uid="uid://bdk5fqsc1ducy" path="res://data/skill_upgrade_dash.tres" id="7_bectd"]
+[ext_resource type="Texture2D" uid="uid://cep3d763v4oxx" path="res://models/player_life_before.png" id="7_we0b7"]
+[ext_resource type="Texture2D" uid="uid://b4ich31yr7aqs" path="res://models/player_life_dying.png" id="8_mtric"]
 [ext_resource type="Resource" uid="uid://c7apfgbi6ab8g" path="res://data/skill_upgrade_speed.tres" id="8_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://dgdcwqnuqa5cs" path="res://entities/player/mining_arm.tscn" id="9_bectd"]
 [ext_resource type="Texture2D" uid="uid://cpo6y3wtlnguy" path="res://models/space_bg_gimp.png" id="10_wvtmh"]
@@ -38,6 +41,10 @@ z_index = 2
 texture = ExtResource("1_symyc")
 script = ExtResource("5_a1qjk")
 _point_light = NodePath("../PointLight2D")
+_full_life_tex = ExtResource("1_symyc")
+_half_life_tex = ExtResource("6_b2kln")
+_tenseconds_life_tex = ExtResource("7_we0b7")
+_dying_life_tex = ExtResource("8_mtric")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 z_index = 2

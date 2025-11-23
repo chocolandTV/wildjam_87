@@ -2,8 +2,9 @@ extends CharacterBody2D
 class_name Player_Controller
 
 #Constants
-const SPEED_BASE : float = 1000.0 # Base Movement speed of the player
-const DASH_SPEED : float = 800.0 # Dash speed of the player
+const SPEED_UPGRADE_FACTOR :float = 100
+const SPEED_BASE : float = 800.0 # Base Movement speed of the player
+const DASH_SPEED : float = 5500.0 # Dash speed of the player
 const DASH_COOLDOWN : float = 5.0 # Dash cooldown time in seconds
 #Private Variables
 var _looks_right : bool = true # Track the direction the player is facing
@@ -13,7 +14,8 @@ var _can_dash : bool = true # Track if the player can _dash
 
 var _killometers_traveled : float = 0.0 # Track distance traveled by the player
 var _session_traveled : float = 0.0
-var _start_position : Vector2 = Vector2.ZERO # Starting position for distance calculation
+var _last_position : Vector2 = Vector2.ZERO # Starting position for distance calculation
+var _start_position : Vector2 = Vector2.ZERO
 # on ready varaibles
 @onready var _dash_timer : Timer = $Dash_Timer
 @onready var _particle_system : CPUParticles2D = $CPUParticles2D
@@ -28,9 +30,9 @@ func _ready() -> void:
 
 	## timer timeout reset can_dash and can_move
 	_dash_timer.timeout.connect(_on_dash_timer_timeout)
-	CycleManager.cycle_changed.connect(_on_cycle_changed)
+	CycleManager.cycle_done.connect(_on_cycle_changed)
+	_last_position = global_position
 	_start_position = global_position
-
 	# SET PLAYER NODE FOR ASTROID MANAGER
 	EventManager.set_player_node(self)
 
@@ -40,7 +42,7 @@ func _input(event: InputEvent) -> void:
 		_dash()
 
 func _physics_process(_delta: float) -> void:
-	_start_position = global_position
+	_last_position = global_position
 	if _can_move:
 		_process_input()
 		_move_player(_delta)
@@ -49,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	# Update distance traveled
-	var _new_kilometers : float =  global_position.distance_to(_start_position)
+	var _new_kilometers : float =  global_position.distance_to(_last_position)
 	_session_traveled += _new_kilometers
 
 	#save killometers to variable
@@ -61,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 		UpgradeManager.perform_upgrade(PersistentData.SKILL_SPEED)
 
 func get_speed_au() -> float:
-	return velocity.length()/ 1000
+	return velocity.length()/ 800
 
 ################################# PRIVATE METHODS #################################
 func _process_input() -> void:
@@ -72,7 +74,8 @@ func _process_input() -> void:
 		_looks_right = _input_vector.x > 0
 func _move_player(_delta: float) -> void:
 	# Calculate velocity based on input and speed
-	velocity = _input_vector.normalized() * SPEED_BASE * PersistentData.player_progress.get(PersistentData.SKILL_SPEED,1)
+	var _speed_factor :float = SPEED_BASE + (SPEED_UPGRADE_FACTOR* PersistentData.player_progress.get(PersistentData.SKILL_SPEED,1))
+	velocity = _input_vector.normalized() * _speed_factor
 	
 
 # Public Methods
@@ -102,9 +105,25 @@ func _on_dash_timer_timeout() -> void:
 	_can_dash = true
 
 
-func _on_cycle_changed(_cycle_stored_upgrades : Dictionary) -> void:
+func _on_cycle_changed() -> void:
 	# Update dash cooldown based on upgrades
 	_dash_timer.wait_time = DASH_COOLDOWN - (PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)* 0.1)
 	# minimum _dash cooldown time
 	if _dash_timer.wait_time < 0.25:
 		_dash_timer.wait_time = 0.25
+	_reset_player()
+
+func _reset_player() ->void:
+	scale = Vector2(0.01,0.01)
+	#particle emit
+	global_position = _start_position
+	var tw = create_tween()
+	tw.tween_property(self, "scale", Vector2(0.01, 0.01), 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.connect("finished", Callable(self, "_on_reset_shrink_finished"))
+
+func _on_reset_shrink_finished() -> void:
+    # Nach dem Shrink die Position zurücksetzen und wieder auf 1.0 tweenen
+	global_position = _start_position
+	var tw = create_tween()
+	tw.tween_property(self, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+# ...existing code...

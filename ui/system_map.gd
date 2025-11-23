@@ -38,9 +38,10 @@ func _ready() -> void:
     EventManager.scanned_planet_updated.connect(_on_planet_scanned_with_high_scan)
 
 func _on_planet_scanned_with_high_scan() -> void:
+    update_planet_color()
+
+func _physics_process(_delta: float) -> void:
     _update_player_pos()
-
-
 #####################################################
 
 func _update_player_pos() ->void:

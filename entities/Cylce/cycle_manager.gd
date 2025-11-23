@@ -1,6 +1,7 @@
 extends Node
 
 signal cycle_changed(cycle_stored_upgrades : Dictionary)
+signal cycle_done()
 
 var current_cycle :int = 0
 var current_lifetime : float = PersistentData.PLAYER_BASE_LIFETIME
@@ -26,6 +27,13 @@ func _physics_process(delta: float) -> void:
         # Later small checkbox for new upgrades increase Speciecs Evolution Goal
 
 ############################################ PUBLIC METHODS ############################################
+
+func get_current_lifetime_in_percent() -> float:
+    var max_lifetime = PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) * 2)
+    if max_lifetime <= 0.0:
+        return 0.0
+    return clamp(current_lifetime / max_lifetime, 0.0, 1.0)
+
 func next_cycle() -> void:
     current_cycle += 1
     # Update Current Evolution
@@ -34,6 +42,7 @@ func next_cycle() -> void:
     print("CycleManager: Advancing to next cycle.Now on cycle %d" % current_cycle)
     var _temp_stored_upgrades : Dictionary = cycle_stored_upgrades.duplicate()
     cycle_changed.emit(_temp_stored_upgrades)
+    cycle_done.emit()
     # give new upgrade to the player
     #increase lifetime upgrade by 1
     #Reset cycle stored upgrades
