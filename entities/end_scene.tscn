@@ -1,12 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://t6sdwj3wrb24"]
+[gd_scene load_steps=15 format=3 uid="uid://t6sdwj3wrb24"]
 
 [ext_resource type="Script" uid="uid://71w2lkkv857g" path="res://entities/game_over/end_scene.gd" id="1_03n2b"]
-[ext_resource type="PackedScene" uid="uid://bcth88gs8dkhc" path="res://entities/planets/planet_earth.tscn" id="1_662pc"]
 [ext_resource type="Texture2D" uid="uid://cpo6y3wtlnguy" path="res://models/space_bg_gimp.png" id="2_03n2b"]
-[ext_resource type="Script" uid="uid://bo2sy4xwreqtp" path="res://entities/player/background.gd" id="3_mumpv"]
+[ext_resource type="Material" uid="uid://bd57s1w5s8hvr" path="res://shaders/planet_shader_material.tres" id="2_mumpv"]
+[ext_resource type="Texture2D" uid="uid://b4o8jfip1b68r" path="res://models/planet_earth.png" id="3_sps31"]
 [ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="4_sps31"]
-[ext_resource type="Script" uid="uid://corcpgd3gxofb" path="res://entities/player/particles_zoom.gd" id="5_ympcu"]
+[ext_resource type="PackedScene" uid="uid://s7ghyryj82r6" path="res://entities/planets/earth_moon.tscn" id="4_ympcu"]
+[ext_resource type="Texture2D" uid="uid://bi2kr1kt2qyqm" path="res://models/particles/earth_scrap.png" id="5_pf46n"]
 [ext_resource type="PackedScene" uid="uid://d10loxwicg8w3" path="res://entities/game_over/invasion_unit.tscn" id="6_d2342"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
+radius = 478.29907
+
+[sub_resource type="Curve" id="Curve_77kny"]
+_data = [Vector2(0.0039525703, 1), 0.0, 0.0, 0, 0, Vector2(0.96837944, 0.108695626), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ttcoo"]
+offsets = PackedFloat32Array(0, 0.2599119, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.5211406, 0.5211406, 0.5211405, 1, 1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_662pc"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -21,9 +33,52 @@ colors = PackedColorArray(0.07450981, 0.27450982, 0.06666667, 1, 0.24313726, 0.5
 [node name="End_Scene" type="Node2D"]
 script = ExtResource("1_03n2b")
 
-[node name="Planet_Earth" parent="." instance=ExtResource("1_662pc")]
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1000
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(2.32, 2.32)
+texture = ExtResource("2_03n2b")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Planet_Earth"]
+[node name="Planet_Earth" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Planet_Earth"]
+texture_filter = 1
+material = ExtResource("2_mumpv")
+texture = ExtResource("3_sps31")
+
+[node name="PointLight2D" type="PointLight2D" parent="Planet_Earth"]
+texture = ExtResource("3_sps31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet_Earth"]
+shape = SubResource("CircleShape2D_rh1pq")
+debug_color = Color(0.8756013, 0.34474754, 0, 0.41960785)
+
+[node name="Moon" parent="Planet_Earth" node_paths=PackedStringArray("center") instance=ExtResource("4_ympcu")]
+position = Vector2(-1073.0002, 11.000001)
+scale = Vector2(0.27, 0.27)
+center = NodePath("../Sprite2D")
+radius = 1000.0
+angular_speed = 0.1
+
+[node name="CPUParticles2D_scrap" type="CPUParticles2D" parent="Planet_Earth"]
+amount = 200
+texture = ExtResource("5_pf46n")
+lifetime = 8.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(700, 700)
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_max = 0.1
+damping_max = 75.912
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_77kny")
+color_ramp = SubResource("Gradient_ttcoo")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(0, 5)
 amount = 125
 texture = ExtResource("4_sps31")
@@ -38,14 +93,6 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_662pc")
 color_initial_ramp = SubResource("Gradient_03n2b")
 
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -1000
-texture_filter = 1
-texture_repeat = 2
-scale = Vector2(2.32, 2.32)
-texture = ExtResource("2_03n2b")
-script = ExtResource("3_mumpv")
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 555
 texture = ExtResource("4_sps31")
@@ -59,7 +106,6 @@ gravity = Vector2(-980, 0)
 scale_amount_min = 0.1
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_afbqv")
-script = ExtResource("5_ympcu")
 
 [node name="Army" type="Node2D" parent="."]
 scale = Vector2(2.32, 2.32)
@@ -382,10 +428,10 @@ scale = Vector2(2.32, 2.32)
 zoom = Vector2(0.225, 0.225)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -981.0
-offset_top = 1112.0
-offset_right = 1090.0
-offset_bottom = 1339.0
+offset_left = -935.0
+offset_top = 807.0
+offset_right = 1136.0
+offset_bottom = 1034.0
 theme_override_colors/font_color = Color(0.5882353, 0.8784314, 0.44705883, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.07450981, 0.27450982, 0.06666667, 1)

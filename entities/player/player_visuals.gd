@@ -21,10 +21,15 @@ enum LIFE_STATE {
 var _parent : CharacterBody2D
 var _is_right : bool = true
 var _current_state : LIFE_STATE
+var _game_over :bool = false
 func _ready() -> void:
     _parent = get_parent()
-
+    EventManager.game_over.connect(_on_game_over)
+func _on_game_over()->void:
+    _game_over = true
 func _physics_process(_delta: float) -> void:
+    if _game_over:
+        return
     _handle_life()
     if _parent.get_player_facing_right() and _is_right:
         return
@@ -46,7 +51,7 @@ func _handle_life() ->void:
         _new_state = LIFE_STATE.FULL
     elif _current_life > 0.25:
         _new_state = LIFE_STATE.HALF
-    elif _current_life > 0.1:
+    elif _current_life > 0.05:
         _new_state = LIFE_STATE.BEFORE
     else:
         _new_state = LIFE_STATE.DEAD

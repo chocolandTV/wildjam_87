@@ -13,12 +13,19 @@ class_name HUD
 @export var _artifact_value_label : Label
 @export var _mining_arms_label : Label
 @export var _speed_value_label : Label
+
+var _game_done :bool = false
 func _ready() -> void:
     EventManager.hide_ui.connect(_on_game_over_hide)
+    EventManager.game_over.connect(_on_game_done)
+func _on_game_done()->void:
+    _game_done = true
 
 func _on_game_over_hide()->void:
     hide()
 func _physics_process(_delta: float) -> void:
+    if _game_done:
+        return
     _update_lifetime()
     _update_speed()
     _update_resources()

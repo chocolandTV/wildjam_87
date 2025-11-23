@@ -63,6 +63,7 @@ func progress_completed() -> void:
 	if _current_canvas_info.canvas_type_enum == _current_canvas_info.CANVAS_TYPE.SCANNING:
 		interactive_box.setup_planet_info(_current_canvas_info) ### add setup_asteroid_info later
 		# give scan upgrade to player
+		print("Upgrade: Scan Efficiency")
 		UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY)
 		#set Planet as scanned planets to persistent data
 		_current_target_area.is_allready_scanned = true

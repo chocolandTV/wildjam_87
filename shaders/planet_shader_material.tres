@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bd57s1w5s8hvr"]
+
+[ext_resource type="Shader" uid="uid://cxj6n4blbdg7i" path="res://shaders/planet_earth.gdshader" id="1_q4uo5"]
+
+[resource]
+shader = ExtResource("1_q4uo5")
+shader_parameter/blur_strength = 0.25
+shader_parameter/inline_scale = 1.0
+shader_parameter/strength = 1.0
+shader_parameter/rim_mix = 2.0
+shader_parameter/affect_black = false
+shader_parameter/pixel_perfect = false
+shader_parameter/shadow_color = Color(0.07450981, 0.27450982, 0.06666667, 1)
+shader_parameter/shadow_color_2 = Color(0.9098039, 0.9882353, 0.8117647, 1)
+shader_parameter/angle = 0.0
+shader_parameter/angle_2 = 0.0
+shader_parameter/dist = 15.000000223518
+shader_parameter/dist_2 = 15.000000223518
+shader_parameter/blend_mode = 1
+shader_parameter/hue = 0.0
+shader_parameter/saturation = 0.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 1.0

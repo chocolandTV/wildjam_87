@@ -65,6 +65,7 @@ func _on_scan_finished() -> void:
     self.hide()
     # emit signal or call other logic if needed
     ##add upgrade
+    print("Upgrade: Scan Efficiency")
     UpgradeManager.perform_upgrade(PersistentData.SKILL_SCAN_EFFICIENCY)
     #### WIN CONDITION 
     if planet_name == "M-OE03":

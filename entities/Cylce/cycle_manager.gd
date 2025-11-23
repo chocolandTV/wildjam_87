@@ -18,6 +18,7 @@ func _ready() -> void:
     UpgradeManager.upgrade_performed.connect(_on_upgrade_performed)
     current_cycle = PersistentData.player_progress.get("current_evolution",1)
     current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) *2)
+    EventManager.game_over.connect(_on_game_over)
 
 func _physics_process(delta: float) -> void:
     if current_lifetime > 0:
@@ -27,6 +28,10 @@ func _physics_process(delta: float) -> void:
         # Later small checkbox for new upgrades increase Speciecs Evolution Goal
 
 ############################################ PUBLIC METHODS ############################################
+func _on_game_over() ->void:
+    queue_free()
+func get_bonus_life() ->void:
+    current_lifetime += 1
 
 func get_current_lifetime_in_percent() -> float:
     var max_lifetime = PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) * 2)
@@ -52,6 +57,7 @@ func next_cycle() -> void:
         "upgrade_scan_efficiency" : 0,
         "upgrade_mining_efficiency" : 0
     }
+    print("Upgrade: Lifetime")
     UpgradeManager.perform_upgrade(PersistentData.SKILL_LIFETIME)
     #Reset lifetime for next cycle
     current_lifetime =  PersistentData.PLAYER_BASE_LIFETIME + (PersistentData.player_progress.get(PersistentData.SKILL_LIFETIME, 1) *2)

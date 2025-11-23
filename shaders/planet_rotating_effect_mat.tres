@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://yy7p1r5tudw5"]
+
+[ext_resource type="Shader" uid="uid://exynacege0o0" path="res://entities/planets/planet_light_shader.gdshader" id="1_4vcpu"]
+
+[resource]
+shader = ExtResource("1_4vcpu")
+shader_parameter/streak_count = 64.0
+shader_parameter/streak_width = 0.499999988824
+shader_parameter/speed = 8.0
+shader_parameter/intensity = 1.10000001639132
+shader_parameter/streak_color = Color(0, 0, 0, 1)
+shader_parameter/inner_cutoff = 1.0
+shader_parameter/outer_falloff = 0.38999999128272

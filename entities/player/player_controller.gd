@@ -61,6 +61,7 @@ func _physics_process(_delta: float) -> void:
 	#reset session for upgrade
 	if _session_traveled > 10000:
 		_session_traveled -= 10000
+		print("Upgrade: Speed")
 		UpgradeManager.perform_upgrade(PersistentData.SKILL_SPEED)
 
 func get_speed_au() -> float:
@@ -96,9 +97,10 @@ func _dash() -> void:
 
 		var dash_speed : float = DASH_SPEED + ((PersistentData.player_progress.get(PersistentData.SKILL_DASH, 1)*500))
 		var _temp_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = _temp_input.normalized() * dash_speed
+		velocity += _temp_input.normalized() * dash_speed
 		_dash_timer.start()
 		# upgrade dash
+		print("Upgrade: Dash")
 		UpgradeManager.perform_upgrade(PersistentData.SKILL_DASH)
 
 func _on_dash_timer_timeout() -> void:

@@ -66,6 +66,7 @@ planet_radius = 20.0
 [node name="Collectable_Mother" parent="Solar_System" instance=ExtResource("12_ger8e")]
 
 [node name="Asteroid_mother" parent="Solar_System" instance=ExtResource("13_ts023")]
+position = Vector2(-15000, -15000)
 
 [node name="Particle_Mother" parent="Solar_System" instance=ExtResource("14_ts023")]
 

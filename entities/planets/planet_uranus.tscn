@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://gckxer03cmix"]
+[gd_scene load_steps=8 format=3 uid="uid://gckxer03cmix"]
 
 [ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_xthoq"]
 [ext_resource type="Resource" uid="uid://crl8khfcca3ur" path="res://data/planet_uranus.tres" id="2_bwyoo"]
+[ext_resource type="Material" uid="uid://bd57s1w5s8hvr" path="res://shaders/planet_shader_material.tres" id="3_bwyoo"]
 [ext_resource type="Texture2D" uid="uid://cduq5ab2dodr3" path="res://models/planet_uranus.png" id="3_f7gir"]
 [ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_dw7dl"]
 
@@ -19,6 +20,7 @@ planet_radius = 4.0
 planet_info = ExtResource("2_bwyoo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("3_bwyoo")
 texture = ExtResource("3_f7gir")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -17,8 +17,8 @@ extends Node
 @export var asteroid_spawn_distance : float = 10000.0
 
 # target radius around player where asteroids fly into
-@export var fly_in_min_radius : float = 300.0
-@export var fly_in_max_radius : float = 1500.0
+@export var fly_in_min_radius : float = 0.0
+@export var fly_in_max_radius : float = 550.0
 
 # fly-in tween duration range
 @export var fly_in_duration_min : float = 0.6
@@ -26,7 +26,7 @@ extends Node
 
 # random linear speed applied after fly-in
 @export var post_fly_speed_min : float = 20.0
-@export var post_fly_speed_max : float = 300.0
+@export var post_fly_speed_max : float = 500.0
 
 # internal
 var _player : Node2D = null
@@ -35,7 +35,7 @@ var _pool : Array = []
 var _active : Array = []
 
 var _timer : Timer
-
+var _is_game_done : bool =false
 func _ready() -> void:
     # subscribe to event when mother node is provided by scene
     EventManager.asteroid_mother_setted.connect(_on_mother_is_set)
@@ -45,6 +45,10 @@ func _ready() -> void:
     _timer.wait_time = asteroid_spawning_rate
     _timer.connect("timeout", Callable(self, "_on_timer_timeout"))
     add_child(_timer)
+    EventManager.game_over.connect(_on_game_over)
+
+func _on_game_over()->void:
+    _is_game_done = true
 
 func _on_mother_is_set() -> void:
     _player = EventManager.player_node
@@ -72,6 +76,8 @@ func _on_mother_is_set() -> void:
     _timer.start()
 
 func _on_timer_timeout() -> void:
+    if _is_game_done:
+        return
     _handle_asteroids()
 
 func _handle_asteroids() -> void:
@@ -145,6 +151,8 @@ func _spawn_asteroid(ast: RigidBody2D, position: Vector2, size: Vector2, resourc
     tw.connect("finished", Callable(self, "_on_asteroid_flyin_finished").bind(ast))
 
 func _on_asteroid_flyin_finished(ast: RigidBody2D) -> void:
+    if _is_game_done:
+        return
     # after arriving, give asteroid a random linear velocity so it continues moving
     if not ast:
         return
@@ -163,6 +171,8 @@ func _on_asteroid_flyin_finished(ast: RigidBody2D) -> void:
 
 func reset_asteroid(ast: RigidBody2D) -> void:
     # called by asteroid when it's ready to be returned to pool
+    if _is_game_done:
+        return
     if not ast:
         return
     # stop tweens on asteroid

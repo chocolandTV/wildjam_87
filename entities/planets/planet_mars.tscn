@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7le6sfeq7atg"]
+[gd_scene load_steps=8 format=3 uid="uid://c7le6sfeq7atg"]
 
 [ext_resource type="Script" uid="uid://ojde37ncfvjg" path="res://entities/planets/planet_class.gd" id="1_i1muf"]
 [ext_resource type="Resource" uid="uid://vylhfegyurop" path="res://data/planet_mars.tres" id="2_i1muf"]
 [ext_resource type="Texture2D" uid="uid://bsqpisxqhoxii" path="res://models/planet_mars.png" id="3_gkypf"]
 [ext_resource type="PackedScene" uid="uid://svkti8t6tww7" path="res://entities/planets/component/information_area.tscn" id="4_67gfx"]
+[ext_resource type="Material" uid="uid://bd57s1w5s8hvr" path="res://shaders/planet_shader_material.tres" id="5_q2jwp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rh1pq"]
 radius = 478.29907
@@ -19,6 +20,7 @@ planet_radius = 0.53
 planet_info = ExtResource("2_i1muf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("5_q2jwp")
 texture = ExtResource("3_gkypf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
