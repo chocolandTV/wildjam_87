@@ -16,7 +16,7 @@ func _on_camera_zoom_in() ->void:
     scale = Vector2.ONE
 
 func _on_camera_player_input(_current_zoom : Vector2)->void:
-    scale = Vector2.ONE / _current_zoom * 1.793103448
+    scale = Vector2.ONE / _current_zoom * IMAGE_SCALE_FACTOR
 
 func _on_camera_zoom_changed(_vector2_zoom : Vector2) -> void:
     print("got signal camera zoom : ", _vector2_zoom.x)

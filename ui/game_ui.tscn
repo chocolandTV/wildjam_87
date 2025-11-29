@@ -1,9 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://ctt33lrpmjpbr"]
+[gd_scene load_steps=36 format=3 uid="uid://ctt33lrpmjpbr"]
 
 [ext_resource type="Script" uid="uid://cmif5p7r7x328" path="res://ui/interactive_box.gd" id="1_dcmab"]
 [ext_resource type="Script" uid="uid://b33la4hr1btfa" path="res://ui/game_ui.gd" id="1_w46tp"]
 [ext_resource type="Script" uid="uid://cyeclsbos0jjr" path="res://ui/progression_bar.gd" id="3_3vkek"]
-[ext_resource type="Script" uid="uid://ctotq0od233tt" path="res://ui/Interact/info_panel_interact.gd" id="3_7hrjk"]
 [ext_resource type="Script" uid="uid://dkulwp55dtdxt" path="res://ui/interactive_box_progress_bar.gd" id="4_iqfqv"]
 [ext_resource type="Script" uid="uid://csuje36fe0dql" path="res://ui/input_manager.gd" id="4_pylni"]
 [ext_resource type="Script" uid="uid://8obghu6o087o" path="res://ui/hud.gd" id="7_2uxy6"]
@@ -28,6 +27,21 @@
 [ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="26_ipw3f"]
 [ext_resource type="Texture2D" uid="uid://c3g50gbh4aq3i" path="res://models/ui_helper.png" id="27_ipw3f"]
 
+[sub_resource type="Animation" id="Animation_c2itc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
 [sub_resource type="Animation" id="Animation_br14n"]
 resource_name = "show"
 length = 3.0
@@ -42,21 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 3.3635864, 3.3635864, 3.4822025, 3.3635848),
 "update": 0,
 "values": [Vector2(1, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_c2itc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cq5fk"]
@@ -132,27 +131,38 @@ _data = {
 &"spinning": SubResource("Animation_ipw3f")
 }
 
-[node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box", "info_panel_interact", "input_manager", "progression_bar", "_transition_effect_control", "_transition_animation")]
+[node name="Game_UI" type="CanvasLayer" node_paths=PackedStringArray("interactive_box", "input_manager", "progression_bar", "_transition_effect_control", "_transition_animation")]
 script = ExtResource("1_w46tp")
-interactive_box = NodePath("Interactive_Box")
-info_panel_interact = NodePath("Info_Panel_Interact")
-input_manager = NodePath("Input_Manager")
-progression_bar = NodePath("Progression_Bar")
-_transition_effect_control = NodePath("Cycle_Transition")
-_transition_animation = NodePath("Cycle_Transition/AnimationPlayer")
+interactive_box = NodePath("Ingame_Interface/Interactive_Box")
+input_manager = NodePath("Ingame_Interface/Input_Manager")
+progression_bar = NodePath("Ingame_Interface/Progression_Bar")
+_transition_effect_control = NodePath("Ingame_Interface/Cycle_Transition")
+_transition_animation = NodePath("Ingame_Interface/Cycle_Transition/AnimationPlayer")
 
-[node name="Interactive_Box" type="Control" parent="." node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel", "progress_Bar")]
-visible = false
+[node name="Menu" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -219.99963
-offset_top = -301.99997
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ingame_Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Interactive_Box" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("planet_name_value", "planet_description_value", "planet_mass_value", "planet_gravity_value", "planet_atmosphere_value", "planet_habitablity_value", "planet_distance_sun_value", "planet_orbital_period_value", "planet_temperature_value", "planet_panel", "progress_Bar")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dcmab")
 planet_name_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/name_value")
 planet_description_value = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values/desc_value")
@@ -166,7 +176,7 @@ planet_temperature_value = NodePath("PanelContainer/MarginContainer/VBoxContaine
 planet_panel = NodePath("PanelContainer")
 progress_Bar = NodePath("ProgressBar")
 
-[node name="ProgressBar" type="ProgressBar" parent="Interactive_Box" node_paths=PackedStringArray("_panel_container_info")]
+[node name="ProgressBar" type="ProgressBar" parent="Ingame_Interface/Interactive_Box" node_paths=PackedStringArray("_panel_container_info")]
 layout_mode = 0
 offset_left = -100.0
 offset_top = 10.0
@@ -177,7 +187,7 @@ show_percentage = false
 script = ExtResource("4_iqfqv")
 _panel_container_info = NodePath("../PanelContainer")
 
-[node name="Label" type="Label" parent="Interactive_Box/ProgressBar"]
+[node name="Label" type="Label" parent="Ingame_Interface/Interactive_Box/ProgressBar"]
 custom_minimum_size = Vector2(292, 0)
 layout_mode = 0
 offset_right = 40.0
@@ -185,7 +195,7 @@ offset_bottom = 23.0
 text = "Scanning...."
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Interactive_Box"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Interactive_Box"]
 visible = false
 layout_mode = 0
 offset_left = -110.0
@@ -193,85 +203,85 @@ offset_right = 217.0
 offset_bottom = 301.0
 pivot_offset = Vector2(-6.645, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="Interactive_Box/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Ingame_Interface/Interactive_Box/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Scan Information"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Base_Info_headers" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Base_Info_headers" type="VBoxContainer" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="name" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="name" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Structure: "
 
-[node name="description" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="description" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Description:"
 
-[node name="mass" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="mass" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Mass:"
 
-[node name="gravity" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="gravity" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Gravity:"
 
-[node name="atmos" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="atmos" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Atmosphere:"
 
-[node name="habili" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="habili" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Habitability:"
 
-[node name="dis_sun" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="dis_sun" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Distance from Star:"
 
-[node name="orbit_time" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="orbit_time" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Orbital Period:"
 
-[node name="temperature" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
+[node name="temperature" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Base_Info_headers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Surface Temperature:"
 
-[node name="Planet_Values" type="VBoxContainer" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Planet_Values" type="VBoxContainer" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="name_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="name_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Humulli"
 uppercase = true
 
-[node name="desc_value" type="RichTextLabel" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="desc_value" type="RichTextLabel" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 custom_minimum_size = Vector2(107, 36)
 layout_mode = 2
 size_flags_vertical = 4
@@ -281,149 +291,92 @@ fit_content = true
 scroll_active = false
 tab_size = 5
 
-[node name="mass_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="mass_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "5.97 × 10^24 kg"
 
-[node name="gravity_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="gravity_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "9.8 m/s²"
 
-[node name="atmos_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="atmos_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Nitrogen-Oxygen"
 
-[node name="habit_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="habit_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "98 % High"
 
-[node name="sundis_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="sundis_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "150 million km"
 
-[node name="orbit_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="orbit_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "365 days"
 
-[node name="temp_value" type="Label" parent="Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
+[node name="temp_value" type="Label" parent="Ingame_Interface/Interactive_Box/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Planet_Values"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "15°C"
 
-[node name="Progression_Bar" type="Control" parent="." node_paths=PackedStringArray("progression_bar", "timer")]
-visible = false
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -110.53998
-offset_right = 20.0
-offset_bottom = -70.53998
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("3_3vkek")
-progression_bar = NodePath("PanelContainer/MarginContainer/VBoxContainer/ProgressBar")
-timer = NodePath("Timer")
-
-[node name="PanelContainer" type="PanelContainer" parent="Progression_Bar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Progression_Bar/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Progression_Bar/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Scanning......"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
-theme_override_font_sizes/font_size = 7
-text = "Info: Scan Planets to get their habitablity."
-
-[node name="Timer" type="Timer" parent="Progression_Bar"]
-one_shot = true
-
-[node name="Info_Panel_Interact" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 159.0
-offset_right = 20.0
-offset_bottom = 199.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_7hrjk")
-
-[node name="PanelContainer" type="PanelContainer" parent="Info_Panel_Interact"]
+[node name="Progression_Bar" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("progression_bar", "timer")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_3vkek")
+progression_bar = NodePath("PanelContainer/MarginContainer/VBoxContainer/ProgressBar")
+timer = NodePath("Timer")
 
-[node name="MarginContainer" type="MarginContainer" parent="Info_Panel_Interact/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Progression_Bar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Ingame_Interface/Progression_Bar/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel_Interact/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ingame_Interface/Progression_Bar/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="mining_header" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Ingame_Interface/Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "PRESS E"
+text = "Scanning......"
 horizontal_alignment = 1
 
-[node name="mining" type="Label" parent="Info_Panel_Interact/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Ingame_Interface/Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label2" type="Label" parent="Ingame_Interface/Progression_Bar/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
 theme_override_font_sizes/font_size = 7
-text = "for mining"
-horizontal_alignment = 1
-uppercase = true
+text = "Info: Scan Planets to get their habitablity."
 
-[node name="Input_Manager" type="Node" parent="."]
+[node name="Timer" type="Timer" parent="Ingame_Interface/Progression_Bar"]
+one_shot = true
+
+[node name="Input_Manager" type="Node" parent="Ingame_Interface"]
 process_mode = 3
 script = ExtResource("4_pylni")
 
-[node name="Evolution_Control" type="Control" parent="." node_paths=PackedStringArray("speed_value_label", "life_value_label", "boost_value_label", "scanning_value_label", "mining_value_label")]
-layout_mode = 3
+[node name="Evolution_Control" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("speed_value_label", "life_value_label", "boost_value_label", "scanning_value_label", "mining_value_label")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -436,7 +389,7 @@ boost_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbo
 scanning_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5/Evolution_scanning_value")
 mining_value_label = NodePath("MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6/Evolution_mining_value")
 
-[node name="MarginContainer" type="MarginContainer" parent="Evolution_Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Ingame_Interface/Evolution_Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -444,144 +397,142 @@ scale = Vector2(1, 1e-05)
 theme_override_constants/margin_left = 55
 theme_override_constants/margin_top = 65
 
-[node name="Hud_Panel_Evolution2" type="PanelContainer" parent="Evolution_Control/MarginContainer"]
+[node name="Hud_Panel_Evolution2" type="PanelContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer"]
 layout_mode = 2
 
-[node name="Evolution_Vbox" type="VBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2"]
+[node name="Evolution_Vbox" type="VBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2"]
 layout_mode = 2
 
-[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_label" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+[node name="Evolution_label" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
 layout_mode = 2
 text = "Evolution"
 
-[node name="Evolution_increase" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
+[node name="Evolution_increase" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution"]
 custom_minimum_size = Vector2(98, 0)
 layout_mode = 2
 text = " Increased"
 horizontal_alignment = 2
 
-[node name="Hud_Item_01_Evolution2" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution2" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_Speed" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+[node name="Evolution_Speed" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
 custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 text = "SPEED: "
 
-[node name="Evolution_Speed_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
+[node name="Evolution_Speed_value" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution2"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = " + 500%"
 horizontal_alignment = 2
 
-[node name="Hud_Item_01_Evolution3" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution3" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_life" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+[node name="Evolution_life" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
 custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 text = "LIFE"
 
-[node name="Evolution_life_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
+[node name="Evolution_life_value" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution3"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "+ 50%"
 horizontal_alignment = 2
 
-[node name="Hud_Item_01_Evolution4" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution4" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_boost" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+[node name="Evolution_boost" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
 custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 text = "BOOST"
 
-[node name="Evolution_boost_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
+[node name="Evolution_boost_value" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution4"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "+ 25%"
 horizontal_alignment = 2
 
-[node name="Hud_Item_01_Evolution5" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution5" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_scanning" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+[node name="Evolution_scanning" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
 custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 text = "SCANNING"
 
-[node name="Evolution_scanning_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
+[node name="Evolution_scanning_value" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution5"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "+ 35% "
 horizontal_alignment = 2
 
-[node name="Hud_Item_01_Evolution6" type="HBoxContainer" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
+[node name="Hud_Item_01_Evolution6" type="HBoxContainer" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_mining" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+[node name="Evolution_mining" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
 custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 text = "MINING"
 
-[node name="Evolution_mining_value" type="Label" parent="Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
+[node name="Evolution_mining_value" type="Label" parent="Ingame_Interface/Evolution_Control/MarginContainer/Hud_Panel_Evolution2/Evolution_Vbox/Hud_Item_01_Evolution6"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "+ 1000%"
 horizontal_alignment = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Evolution_Control"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ingame_Interface/Evolution_Control"]
 libraries = {
 &"": SubResource("AnimationLibrary_cq5fk")
 }
 
-[node name="Hud" type="Control" parent="." node_paths=PackedStringArray("_lifetime_label", "_evolution_label", "_mineral_value_label", "_gas_value_label", "_crystal_value_label", "_artifact_value_label", "_mining_arms_label", "_speed_value_label")]
-custom_minimum_size = Vector2(1152, 0)
-layout_mode = 3
-anchors_preset = 15
+[node name="Hud" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("_lifetime_label", "_evolution_label", "_mineral_value_label", "_gas_value_label", "_crystal_value_label", "_artifact_value_label", "_mining_arms_label", "_speed_value_label")]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("7_2uxy6")
 _lifetime_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2/Life_time_value")
 _evolution_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution/Evolution_value")
@@ -592,13 +543,13 @@ _artifact_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Reso
 _mining_arms_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer/Label")
 _speed_value_label = NodePath("PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer/Label")
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud"]
-custom_minimum_size = Vector2(1139, 52)
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Hud"]
+custom_minimum_size = Vector2(1920, 52)
 layout_mode = 0
 offset_right = 1139.0
 offset_bottom = 52.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Hud/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Ingame_Interface/Hud/PanelContainer"]
 custom_minimum_size = Vector2(1139, 52)
 layout_mode = 2
 theme_override_constants/margin_left = 5
@@ -606,168 +557,168 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Main_H_Box" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer"]
+[node name="Main_H_Box" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(1129, 42)
 layout_mode = 2
 alignment = 1
 
-[node name="Hud_Panel_Evolution" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Evolution" type="PanelContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution"]
+[node name="Hud_Item_01_Evolution" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_85ca7")
 expand_mode = 1
 
-[node name="Evolution_Cylce" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
+[node name="Evolution_Cylce" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
 layout_mode = 2
 text = "Evolution"
 
-[node name="Evolution_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
+[node name="Evolution_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Evolution/Hud_Item_01_Evolution"]
 custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 text = "333"
 
-[node name="Hud_Panel_Lifetime" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Lifetime" type="PanelContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime"]
+[node name="Hud_Item_01_Lifetime2" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("8_hgyfx")
 expand_mode = 1
 
-[node name="Life_time_header" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
+[node name="Life_time_header" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
 layout_mode = 2
 text = "Age: "
 
-[node name="Life_time_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
+[node name="Life_time_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Lifetime/Hud_Item_01_Lifetime2"]
 custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
 text = "55555"
 
-[node name="VSeparator" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="VSeparator" type="VSeparator" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 theme_override_constants/separation = 69
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
 
-[node name="Resource_Holder" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Resource_Holder" type="MarginContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder"]
 layout_mode = 2
 
-[node name="Resource_Minerals" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer"]
+[node name="Resource_Minerals" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer"]
 layout_mode = 2
 
-[node name="minerals_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="minerals_texture" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("9_vtgmo")
 expand_mode = 1
 
-[node name="minerals_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="minerals_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 text = "x 52"
 
-[node name="VSeparator" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="VSeparator" type="VSeparator" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 
-[node name="gas_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="gas_texture" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("10_gm2vc")
 expand_mode = 1
 
-[node name="gas_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="gas_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 text = "x 52"
 
-[node name="VSeparator2" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="VSeparator2" type="VSeparator" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 
-[node name="crystal_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="crystal_texture" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("11_85ca7")
 expand_mode = 1
 
-[node name="crystals_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="crystals_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 text = "x 52"
 
-[node name="VSeparator3" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="VSeparator3" type="VSeparator" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 
-[node name="artefacts_texture" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="artefacts_texture" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("12_iqfqv")
 expand_mode = 1
 
-[node name="artifacts_value" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
+[node name="artifacts_value" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Resource_Holder/PanelContainer/Resource_Minerals"]
 layout_mode = 2
 text = "x 52"
 
-[node name="VSeparator2" type="VSeparator" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="VSeparator2" type="VSeparator" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 theme_override_constants/separation = 44
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f7kcv")
 
-[node name="Hud_Panel_Mining_arms" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Mining_arms" type="MarginContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("10_f7kcv")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Mining_arms/PanelContainer/HBoxContainer"]
 layout_mode = 2
 text = "x 3"
 
-[node name="Hud_Panel_Time_Played" type="MarginContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box"]
+[node name="Hud_Panel_Time_Played" type="MarginContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("10_f7kcv")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Ingame_Interface/Hud/PanelContainer/MarginContainer/Main_H_Box/Hud_Panel_Time_Played/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(133, 32)
 layout_mode = 2
 text = "Speed:  99999 AU"
 
-[node name="System_Map" type="Control" parent="." node_paths=PackedStringArray("_player_texture", "_neptune_texture", "_uranus_texture", "_saturn_texture", "_jupiter_texture", "_mars_texture", "_earth_texture", "_venus_texture", "_mercury_texture", "_sun_texture")]
-layout_mode = 3
+[node name="System_Map" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("_player_texture", "_neptune_texture", "_uranus_texture", "_saturn_texture", "_jupiter_texture", "_mars_texture", "_earth_texture", "_venus_texture", "_mercury_texture", "_sun_texture")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -795,7 +746,7 @@ _mercury_color = Color(0.34901962, 0.34509805, 0.3372549, 1)
 _sun_texture = NodePath("MarginContainer/PanelContainer/Panel/Sun")
 _sun_color = Color(0.9490196, 0.5137255, 0.1254902, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="System_Map"]
+[node name="MarginContainer" type="MarginContainer" parent="Ingame_Interface/System_Map"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -804,20 +755,20 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="System_Map/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Ingame_Interface/System_Map/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_iqfqv")
 
-[node name="MAP" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer"]
+[node name="MAP" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer"]
 modulate = Color(0.24313726, 0.5372549, 0.078431375, 1)
 layout_mode = 2
 texture = ExtResource("16_hsnwv")
 
-[node name="Panel" type="Panel" parent="System_Map/MarginContainer/PanelContainer"]
+[node name="Panel" type="Panel" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hsnwv")
 
-[node name="Neptune" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Neptune" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -829,7 +780,7 @@ texture = ExtResource("17_ieeuq")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Uranus" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Uranus" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -841,7 +792,7 @@ texture = ExtResource("18_4b5nc")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Saturn" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Saturn" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -853,7 +804,7 @@ texture = ExtResource("19_22vk4")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Jupiter" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Jupiter" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -865,7 +816,7 @@ texture = ExtResource("20_ipw3f")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Mars" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Mars" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -877,7 +828,7 @@ texture = ExtResource("21_mq1hb")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Earth" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Earth" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -889,7 +840,7 @@ texture = ExtResource("22_br14n")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Venus" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Venus" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -901,7 +852,7 @@ texture = ExtResource("23_c2itc")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Mercury" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Mercury" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -913,7 +864,7 @@ texture = ExtResource("24_cq5fk")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Sun" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Sun" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -925,7 +876,7 @@ texture = ExtResource("26_ipw3f")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Player" type="TextureRect" parent="System_Map/MarginContainer/PanelContainer/Panel"]
+[node name="Player" type="TextureRect" parent="Ingame_Interface/System_Map/MarginContainer/PanelContainer/Panel"]
 process_mode = 3
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -937,16 +888,16 @@ texture = ExtResource("8_hgyfx")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Cycle_Transition" type="Control" parent="."]
+[node name="Cycle_Transition" type="Control" parent="Ingame_Interface"]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Cycle_Transition"]
+[node name="ColorRect" type="ColorRect" parent="Ingame_Interface/Cycle_Transition"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -955,7 +906,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.07450981, 0.27450982, 0.06666667, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Cycle_Transition"]
+[node name="TextureRect" type="TextureRect" parent="Ingame_Interface/Cycle_Transition"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -971,7 +922,7 @@ grow_vertical = 2
 pivot_offset = Vector2(128, 128)
 texture = ExtResource("27_ipw3f")
 
-[node name="Label" type="Label" parent="Cycle_Transition"]
+[node name="Label" type="Label" parent="Ingame_Interface/Cycle_Transition"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -992,7 +943,7 @@ theme_override_font_sizes/font_size = 41
 text = "evolution"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Cycle_Transition"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ingame_Interface/Cycle_Transition"]
 libraries = {
 &"": SubResource("AnimationLibrary_br14n")
 }

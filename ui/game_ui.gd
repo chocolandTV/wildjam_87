@@ -3,7 +3,7 @@ extends CanvasLayer
 # Exported Variables
 @export var interactive_box : Interactive_Box
 
-@export var info_panel_interact : Info_Panel_Interact
+
 @export var input_manager : Input_Manager
 @export var progression_bar : Control
 #@export var _test_canvas_info : Canvas_Info
@@ -25,7 +25,7 @@ func _ready() -> void:
 	_transition_animation.animation_finished.connect(_on_animation_player_finished_cycle_change)
 
 func setup_asteroid_mining_box(_value : bool) ->void:
-	info_panel_interact.visible = _value
+	print("setup obsoled")
 
 # Public Methods
 func setup_interactive_box(planet_info : Canvas_Info, _target_area : Area2D) -> void:
@@ -47,7 +47,7 @@ func hide_interactive_box() -> void:
 	interactive_box.visible = false
 	# hide intern panels
 	interactive_box.hide_panels()
-	info_panel_interact.hide()
+	
 	progression_bar.visible = false
 	progression_bar.timer.stop()
 	_is_interacting = false
@@ -58,7 +58,7 @@ func show_interactive_box() -> void:
 # completed interaction progress
 func progress_completed() -> void:
 	_is_interacting = false
-	info_panel_interact.hide()
+	
 	progression_bar.visible = false
 	if _current_canvas_info.canvas_type_enum == _current_canvas_info.CANVAS_TYPE.SCANNING:
 		interactive_box.setup_planet_info(_current_canvas_info) ### add setup_asteroid_info later
@@ -77,7 +77,7 @@ func _on_cycle_changed() ->void:
 	_transition_animation.play("spinning")
 
 func _start_progress_bar_interaction() -> void:
-	info_panel_interact.hide()
+
 	progression_bar.visible = true
 	progression_bar.start_progress()
 
