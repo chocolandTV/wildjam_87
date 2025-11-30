@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuw6h3i0n5nup"]
+[gd_scene load_steps=14 format=3 uid="uid://cuw6h3i0n5nup"]
 
 [ext_resource type="Script" uid="uid://cihr0qps5xr1s" path="res://entities/Asteroids/asteroid_base.gd" id="1_s646y"]
 [ext_resource type="Texture2D" uid="uid://bxmqtucdftbo0" path="res://models/asteroid_01.png" id="1_vpnsi"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5way0l1dg5yo" path="res://entities/collectables/collectable_crystal.tscn" id="7_16r6w"]
 [ext_resource type="PackedScene" uid="uid://dndog24asitgt" path="res://entities/collectables/collectable_Artifact.tscn" id="8_1gjvh"]
 [ext_resource type="Texture2D" uid="uid://cpof1my2cldg3" path="res://models/particles/space_dust_01.png" id="9_4l2sp"]
+[ext_resource type="PackedScene" uid="uid://0b4t677xabql" path="res://entities/Components/planet_attraction_area.tscn" id="10_16r6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0awka"]
 radius = 106.7942
@@ -66,3 +67,5 @@ color_ramp = SubResource("Gradient_1gjvh")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
+
+[node name="Planet_attraction_area" parent="." instance=ExtResource("10_16r6w")]

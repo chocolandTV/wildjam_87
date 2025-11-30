@@ -16,6 +16,8 @@ var _killometers_traveled : float = 0.0 # Track distance traveled by the player
 var _session_traveled : float = 0.0
 var _last_position : Vector2 = Vector2.ZERO # Starting position for distance calculation
 var _start_position : Vector2 = Vector2.ZERO
+
+var attraction_velocity : Vector2 = Vector2.ZERO
 # on ready varaibles
 @onready var _dash_timer : Timer = $Dash_Timer
 @onready var _particle_system : CPUParticles2D = $CPUParticles2D
@@ -77,7 +79,7 @@ func _process_input() -> void:
 func _move_player(_delta: float) -> void:
 	# Calculate velocity based on input and speed
 	var _speed_factor :float = SPEED_BASE + (SPEED_UPGRADE_FACTOR* PersistentData.player_progress.get(PersistentData.SKILL_SPEED,1))
-	velocity = _input_vector.normalized() * _speed_factor
+	velocity = (_input_vector.normalized() * _speed_factor) + attraction_velocity
 	
 
 # Public Methods

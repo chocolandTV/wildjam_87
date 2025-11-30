@@ -327,6 +327,7 @@ theme_override_font_sizes/font_size = 13
 text = "15°C"
 
 [node name="Progression_Bar" type="Control" parent="Ingame_Interface" node_paths=PackedStringArray("progression_bar", "timer")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
